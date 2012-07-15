@@ -2,7 +2,8 @@ doctype 5
 html
   head
     title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
     include header.html
   body
-    block content
+    .container
+      include menu.html
+      block content
