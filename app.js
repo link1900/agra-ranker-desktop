@@ -189,5 +189,5 @@ app.get('/todo', function(req, res) {
 });
 
 http.createServer(app).listen(app.get('port'), function() {
-    console.log("Node server started at " + new Date() + " and listening on port " + app.get('port'));
+	console.log("Node Express server started at " + new Date() + " listening on port %d in %s mode", app.address().port, app.settings.env);
 });
