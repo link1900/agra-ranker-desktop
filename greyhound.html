@@ -1,35 +1,20 @@
-<h2>Greyhounds</h2>
-
-<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="greyhoundTable">
-	<thead>
-		<tr>
-			<th>Name</th>
-			<th>Sire</th>
-			<th>Dam</th>
-		</tr>
-	</thead>
-	<tbody id="greyhoundTableBody">
-		<tr><td>hello</td><td>hello</td><td>hello</td></tr>
-	</tbody>
-</table>
-
-<script type="text/javascript" charset="utf-8">
-			$(document).ready(function() {
-				$('#greyhoundTable').dataTable({
-			        "bPaginate": true,
-			        "bLengthChange": false,
-			        "bFilter": true,
-			        "bSort": true,
-			        "bAutoWidth": true,
-        			"sPaginationType": "full_numbers",
-        			"bProcessing": true,
-        			"sAjaxSource": "api/greyhounds",
-        			"sAjaxDataProp": "greyhounds",
-        			"aoColumns": [
-			            { "mDataProp": "name" },
-			            { "mDataProp": "sire" },
-			            { "mDataProp": "dam" }
-			        ]
-			    });
-			} );
-</script>
+<div id="GreyhoundContent" ng-controller="GreyhoundCtrl">
+	<h2>Greyhounds</h2>
+	
+	<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="greyhoundTable">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Sire</th>
+				<th>Dam</th>
+			</tr>
+		</thead>
+		<tbody id="greyhoundTableBody">
+			<tr ng-repeat="greyhound in greyhounds">
+				<td>{{greyhound.name}}</td>
+				<td>{{greyhound.sire}}</td>
+				<td>{{greyhound.dam}}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
