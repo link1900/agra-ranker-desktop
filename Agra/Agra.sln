@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual C# Express 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "agra_gui", "agra_gui\agra_gui.csproj", "{B73F9D6C-32C5-4FF6-9AF7-CB0A5DB22F84}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{6FD816DC-5B4C-4336-A01C-A0F0B8C9AA53}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B73F9D6C-32C5-4FF6-9AF7-CB0A5DB22F84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B73F9D6C-32C5-4FF6-9AF7-CB0A5DB22F84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B73F9D6C-32C5-4FF6-9AF7-CB0A5DB22F84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B73F9D6C-32C5-4FF6-9AF7-CB0A5DB22F84}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6FD816DC-5B4C-4336-A01C-A0F0B8C9AA53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FD816DC-5B4C-4336-A01C-A0F0B8C9AA53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FD816DC-5B4C-4336-A01C-A0F0B8C9AA53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FD816DC-5B4C-4336-A01C-A0F0B8C9AA53}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

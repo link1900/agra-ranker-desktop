@@ -1,0 +1,619 @@
+
+html, body {
+    height: 100%;
+}
+body {
+    background: none repeat scroll 0 0 #FFFFFF;
+    color: #000000;
+    font: 12px/16px Arial,Helvetica,sans-serif;
+    margin: 0;
+}
+table {
+    font: 12px/16px Arial,Helvetica,sans-serif;
+}
+table td {
+    vertical-align: top;
+}
+img {
+    border-style: none;
+}
+a {
+    color: #692020;
+    text-decoration: underline;
+}
+a:hover {
+    text-decoration: none;
+}
+h4 {
+    color: #692020;
+    font-weight: normal;
+    margin-top: 0;
+}
+.list {
+    line-height: 18px;
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+}
+.list li {
+    background: url("Images/bullet.gif") no-repeat scroll 0 8px transparent;
+    padding-left: 12px;
+}
+.list li a {
+    color: #000000;
+}
+#wrapper {
+    display: table;
+    height: 100%;
+    margin: 0 auto;
+    width: 100%;
+}
+.wrapper-holder {
+    display: table-row;
+    width: 100%;
+}
+#header {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    z-index: 1;
+}
+.w1 {
+    float: left;
+    left: 50%;
+    position: relative;
+    width: 1029px;
+}
+.w2 {
+    background: url("Images/bg-header.png") no-repeat scroll 50% 0 transparent;
+    float: left;
+    left: -50%;
+    position: relative;
+    width: 1029px;
+}
+#header .w2 {
+    height: 197px;
+}
+.logo {
+    background: url("Images/logo.png") no-repeat scroll 0 0 transparent;
+    height: 135px;
+    left: 45px;
+    margin: 0;
+    overflow: hidden;
+    position: absolute;
+    text-indent: -9999px;
+    top: 31px;
+    width: 367px;
+}
+.logo a {
+    display: block;
+    height: 100%;
+}
+#header .photo1 {
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 2;
+}
+#header .photo2 {
+    position: absolute;
+    right: 132px;
+    top: 0;
+    z-index: 1;
+}
+#header .photo3 {
+    position: absolute;
+    right: 334px;
+    top: 0;
+    z-index: 2;
+}
+#navContainer {
+    background: url("Images/bg-nav.png") no-repeat scroll 50% 0 transparent;
+    margin-top: -48px;
+    position: relative;
+    width: 100%;
+    z-index: 2;
+}
+#navContainer {
+    background: url("Images/bg-nav-inner.png") no-repeat scroll 50% 0 transparent;
+}
+#navContainer .w3 {
+    margin: 0 auto;
+    padding: 49px 0 0;
+    position: relative;
+    text-align: center;
+    width: 1000px;
+}
+#navContainer .w3:after {
+    clear: both;
+    content: "";
+    display: block;
+}
+#navContainer .w4 {
+    float: left;
+    left: 50%;
+    position: relative;
+}
+#navContainer ul {
+    left: -50%;
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+#navContainer ul:after {
+    clear: both;
+    content: "";
+    display: block;
+}
+#navContainer li {
+    float: left;
+    font: bold 14px/40px "Trebuchet MS",Arial,Helvetica,sans-serif;
+    margin-right: -1px;
+}
+#navContainer li a {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: #CCCCCC;
+    border-image: none;
+    border-style: solid;
+    border-width: 0 1px;
+    color: #343434;
+    float: left;
+    height: 41px;
+    padding: 0 25px 0 26px;
+    text-decoration: none;
+}
+#navContainer li:hover a, #navContainer li a:hover {
+    background: none repeat scroll 0 0 #ECECEC;
+    color: #692020;
+    text-decoration: none;
+}
+#navContainer li .l, #navContainer li .r {
+    background: url("Images/bg-l.png") no-repeat scroll 0 0 transparent;
+    display: none;
+    float: left;
+    height: 41px;
+    width: 5px;
+}
+#navContainer li .r {
+    background: url("Images/bg-r.png") no-repeat scroll 100% 0 transparent;
+}
+#navContainer li .r {
+    background: url("Images/bg-r-inner.png") no-repeat scroll 100% 0 transparent;
+}
+#navContainer li .l {
+    background: url("Images/bg-l-inner.png") no-repeat scroll 0 0 transparent;
+}
+#navContainer li.currentmenu {
+    background: none repeat scroll 0 0 #FFFFFF;
+    margin: 0 -6px 0 -5px;
+    position: relative;
+    z-index: 3;
+}
+#navContainer li.currentmenu .l, #navContainer li.currentmenu .r {
+    display: block;
+}
+#navContainer li:hover {
+    position: relative;
+    z-index: 4;
+}
+#navContainer li .drop {
+    display: none;
+    left: -9px;
+    position: absolute;
+    top: 40px;
+    width: 210px;
+}
+#navContainer li:hover .drop {
+    display: block;
+}
+#navContainer li .drop .t {
+    background: url("Images/bg-drop-t.png") no-repeat scroll 0 0 transparent;
+    height: 4px;
+    overflow: hidden;
+}
+#navContainer li .drop .b {
+    background: url("Images/bg-drop-b.png") no-repeat scroll 0 0 transparent;
+    height: 4px;
+    overflow: hidden;
+}
+#navContainer ul ul {
+    background: url("Images/bg-drop.png") repeat-y scroll 0 0 transparent;
+    left: 0;
+    padding: 0 2px;
+    position: static;
+    text-align: left;
+}
+#navContainer li li {
+    background: url("Images/none.gif") repeat scroll 0 0 transparent;
+    border-bottom: 1px solid #DBDBDB;
+    float: none;
+    font: 11px/24px "Trebuchet MS",Arial,Helvetica,sans-serif;
+    height: 1%;
+    margin-right: 0;
+    padding: 0 5px 0 17px;
+    vertical-align: top;
+}
+#navContainer li li a {
+    background: none repeat scroll 0 0 #FFFFFF !important;
+    border: medium none;
+    color: #000000 !important;
+    display: block;
+    float: none;
+    height: auto;
+    padding: 0;
+}
+#navContainer li li a:hover {
+    color: #FF0000 !important;
+}
+#main {
+    border-left: 1px solid #CCCCCC;
+    border-right: 1px solid #CCCCCC;
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 0 1px 0 36px;
+    width: 944px;
+}
+#content {
+    float: left;
+    overflow: hidden;
+    padding: 31px 0 4px;
+    width: 637px;
+}
+#content.full {
+    width: 872px;
+}
+.twocolumns {
+    margin-bottom: 31px;
+    margin-left: -4px;
+    overflow: hidden;
+    width: 641px;
+}
+#content .twocolumns h2 {
+    margin: 0;
+}
+#content .twocolumns h2 a {
+    text-decoration: none;
+}
+.twocolumns .date {
+    color: #7F7F7F;
+    display: block;
+    font: 10px/12px Arial,Helvetica,sans-serif;
+    margin-bottom: 10px;
+}
+.twocolumns .col {
+    float: left;
+    margin-left: 36px;
+    padding-left: 4px;
+    width: 295px;
+}
+.twocolumns .col:first-child {
+    margin-left: 0;
+}
+.twocolumns .col img {
+    max-width: 284px;
+    vertical-align: top;
+}
+.twocolumns .col .visual {
+    background: url("Images/bg-visual.gif") no-repeat scroll 0 0 transparent;
+    margin: 0 0 15px -2px;
+    padding: 6px 0 8px;
+    text-align: center;
+    width: 299px;
+}
+#content .twocolumns p {
+    margin: 0;
+}
+.news {
+    padding-right: 36px;
+}
+#content .news h2 {
+    margin: 0 0 9px;
+}
+#content .news h3 {
+    font-size: 16px;
+    line-height: 15px;
+    margin: 0 0 2px;
+}
+#content .news h3 a {
+    text-decoration: none;
+}
+.news ul {
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+}
+.news li {
+    padding-top: 13px;
+    vertical-align: top;
+    width: 100%;
+}
+.news .date {
+    color: #7F7F7F;
+    display: block;
+    font-style: normal;
+    margin-bottom: 8px;
+}
+.news.fulllist .date {
+    display: inline;
+}
+.news .author {
+    color: #7F7F7F;
+    display: block;
+    font-style: normal;
+    margin-bottom: 8px;
+}
+.news .post {
+    padding-bottom: 14px;
+}
+.news .post .date {
+    display: block;
+}
+.news .visual-box .description {
+    float: left;
+    text-align: left;
+}
+.visual-box {
+    margin-bottom: 18px;
+    padding-top: 2px;
+    width: 100%;
+}
+.news .visual-box {
+    width: auto;
+}
+.visual-box .image-container {
+    float: right;
+    margin: 0 0 29px 21px;
+    width: 299px;
+}
+.visual-box .image-container img {
+    max-width: 284px;
+}
+.visual-box .image {
+    background: url("Images/bg-visual.gif") no-repeat scroll 0 0 transparent;
+    padding: 6px 0 8px;
+    text-align: center;
+    width: 299px;
+}
+.visual-box .caption {
+    font-style: italic;
+    text-align: right;
+}
+.visual-box .description {
+    color: #692020;
+    float: right;
+    font: italic 16px/19px "Trebuchet MS",Arial,Helvetica,sans-serif;
+    padding-top: 3px;
+    text-align: right;
+    width: 230px;
+}
+#content h2 {
+    color: #692020;
+    font: 20px/21px "Trebuchet MS",Arial,Helvetica,sans-serif;
+    margin: 0 0 10px;
+}
+#content h3 {
+    color: #692020;
+    font-size: 14px;
+    line-height: 16px;
+    margin: 12px 0 8px;
+}
+#content p {
+    margin: 0 0 19px;
+}
+#content .post-holder {
+    width: 100%;
+}
+#content .post-holder p {
+    margin-bottom: 10px;
+}
+#content dt {
+    font-weight: bold;
+    margin-top: 20px;
+}
+#content dd {
+    margin: 5px 0 0;
+}
+.page-menu a {
+    color: #692020 !important;
+    text-decoration: none;
+}
+a.page-anchor {
+    color: inherit;
+    text-decoration: none;
+}
+#sidebar {
+    border-left: 1px solid #ECECEC;
+    float: right;
+    padding: 31px 0 34px;
+    width: 268px;
+}
+#sidebar .box {
+    border-top: 1px solid #ECECEC;
+    font-size: 11px;
+    height: 1%;
+    padding: 32px 20px 32px 30px;
+}
+#sidebar a {
+    color: #5B1515;
+}
+#sidebar .box:first-child {
+    border: medium none;
+    padding-top: 0;
+}
+#sidebar h3 {
+    color: #692020;
+    font: bold 14px/15px "Trebuchet MS",Arial,Helvetica,sans-serif;
+    margin: 0 0 17px;
+}
+#sidebar .box .row {
+    margin-bottom: 15px;
+    overflow: hidden;
+    width: 100%;
+}
+#sidebar .box .row p {
+    height: 1%;
+    margin: 0;
+    overflow: hidden;
+}
+#sidebar .box .row .visual {
+    float: left;
+    margin-right: 10px;
+}
+#sidebar .box img {
+    vertical-align: top;
+}
+#sidebar .box .list li a {
+    color: #000000;
+}
+#footer {
+    background: none repeat scroll 0 0 #692020;
+    color: #FFFFFF;
+    display: table-footer-group;
+    overflow: hidden;
+    width: 100%;
+}
+#footer a {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+#footer a:hover {
+    text-decoration: underline;
+}
+#footer .footer-holder {
+    display: table-row;
+    height: 1%;
+}
+#footer .footer-frame {
+    display: table-cell;
+}
+#footer .columns {
+    margin: 29px auto 24px;
+    overflow: hidden;
+    width: 905px;
+}
+#footer .col {
+    float: left;
+    margin-right: 81px;
+}
+#footer .col h4 {
+}
+#footer ul {
+    font: 12px/18px "Trebuchet MS",Arial,Helvetica,sans-serif;
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+}
+#footer ul li span {
+    margin: 0 0 3px;
+    text-transform: uppercase;
+}
+#footer ul li ul li span {
+    margin: 0;
+    text-transform: none;
+}
+#footer ul li {
+    float: left;
+    margin-right: 80px;
+}
+#footer ul li ul li {
+    float: none;
+    margin-right: 0;
+}
+#footer .copy {
+    background: none repeat scroll 0 0 #490E0E;
+    display: block;
+    font: 12px/40px "Trebuchet MS",Arial,Helvetica,sans-serif;
+    height: 40px;
+    text-align: center;
+}
+#footer .copy span {
+    padding-left: 41px;
+    width: 900px;
+}
+.group:after {
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
+* html .group {
+    height: 1%;
+}
+:first-child + html .group {
+    min-height: 1px;
+}
+#hof_text {
+    float: left;
+    width: 60%;
+}
+#hof_image {
+    float: right;
+    text-align: right;
+    width: 40%;
+}
+#hof_image img {
+    max-width: 250px;
+}
+#hof-full-listing .item {
+    background-color: #FFCCCC;
+    margin: 20px 0;
+    padding: 5px;
+}
+#hof-full-listing .item.alt {
+    background-color: #FFFFFF;
+}
+.group1 {
+    color: #FF0000;
+}
+.group2 {
+    color: #0070C0;
+}
+.group3 {
+    color: #00B050;
+}
+.upcoming-event-table {
+    border-left: 1px solid #999999;
+    border-top: 1px solid #999999;
+}
+.upcoming-event-table td, .upcoming-event-table th {
+    border-bottom: 1px solid #999999;
+    border-right: 1px solid #999999;
+    padding: 3px;
+    text-align: left;
+    vertical-align: top;
+}
+#upcoming-events-listing .month-item {
+    margin-bottom: 20px;
+}
+.venueCol {
+    width: 111px;
+}
+.raceDistanceCol {
+    width: 155px;
+}
+.groupCol {
+    width: 40px;
+}
+.datesCol {
+    width: 70px;
+}
+.prizemoneyCol {
+    width: 0;
+}
+ul#year_list {
+    margin-top: 10px;
+    padding-left: 20px;
+}
+#gallery .image {
+    float: left;
+    margin-bottom: 5px;
+    margin-right: 5px;
+}
+.thumb {
+    max-width: 300px;
+}
