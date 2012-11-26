@@ -140,6 +140,7 @@
     <Compile Include="frmTextInput.Designer.cs">
       <DependentUpon>frmTextInput.cs</DependentUpon>
     </Compile>
+    <Compile Include="Logging.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="frmStats.cs">
@@ -148,6 +149,7 @@
     <Compile Include="frmStats.Designer.cs">
       <DependentUpon>frmStats.cs</DependentUpon>
     </Compile>
+    <Compile Include="Settings.cs" />
     <EmbeddedResource Include="AboutBox1.resx">
       <SubType>Designer</SubType>
       <DependentUpon>AboutBox1.cs</DependentUpon>

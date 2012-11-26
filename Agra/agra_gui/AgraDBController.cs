@@ -17,12 +17,13 @@ namespace agra_gui
         public static string filename = System.IO.Directory.GetCurrentDirectory() + "\\agraDB.dat";
         public static AgraDB agraDb;
 
-        public static Boolean xmlData = false;
+        public static Boolean xmlData = true;
         public static Hashtable forms = new Hashtable();
         public static bool defaultSunsetSetting = false;
 
         #region gui
-        public static void loadGUI(){
+        public static void loadGUI()
+        {
             createForms();
         }
 
@@ -67,24 +68,13 @@ namespace agra_gui
         #region Saving and Loading via Serialization
         public static void Serialize()
         {
-            if (xmlData)
-            {
-                SerializeXml();
-            }
-            else
-            {
-                SerializeBinary();
-            }
+            SerializeBinary();
         }
 
         public static void SerializeBinary()
         {
-            // To serialize the hashtable and its key/value pairs,  
-            // you must first open a stream for writing. 
-            // In this case, use a file stream.
             FileStream fs = new FileStream("AgraDB.dat", FileMode.Create);
 
-            // Construct a BinaryFormatter and use it to serialize the data to the stream.
             BinaryFormatter formatter = new BinaryFormatter();
             try
             {
@@ -101,36 +91,9 @@ namespace agra_gui
             }
         }
 
-
-        public static void SerializeXml()
-        {
-            FileStream fs = new FileStream("AgraDB.xml", FileMode.Create);
-            System.Xml.Serialization.XmlSerializer x = new System.Xml.Serialization.XmlSerializer(fs.GetType());
-            try
-            {
-                x.Serialize(fs, agraDb);
-            }
-            catch (SerializationException e)
-            {
-                Console.WriteLine("Failed to serialize. Reason: " + e.Message);
-                throw;
-            }
-            finally
-            {
-                fs.Close();
-            }
-        }
-
         public static void Deserialize()
         {
-            if (xmlData)
-            {
-                DeserializeXml();
-            }
-            else
-            {
-                DeserializeBinary();
-            }
+            DeserializeBinary();
         }
 
         public static void DeserializeBinary()
@@ -153,24 +116,6 @@ namespace agra_gui
 
         }
 
-        public static void DeserializeXml()
-        {
-            try
-            {
-                FileStream fs = new FileStream("AgraDB.xml", FileMode.Open);
-                System.Xml.Serialization.XmlSerializer x = new System.Xml.Serialization.XmlSerializer(fs.GetType());
-                // Deserialize the hashtable from the file and 
-                // assign the reference to the local variable.
-                agraDb = (AgraDB)x.Deserialize(fs);
-                fs.Close();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Failed to deserialize. Reason: " + e.Message);
-                agraDb = new AgraDB();
-                DefaultPointSetup();
-            }
-        }
         #endregion
 
         #region Adding
@@ -259,15 +204,18 @@ namespace agra_gui
         }
 
         public static bool AddOrUpdateRaceAndPlacings(String currentName, DateTime currentDate, GroupRank groupRank,
-            int raceLength,bool isNoRace, string[] greys, short[] places)
+            int raceLength, bool isNoRace, string[] greys, short[] places)
         {
             Race raceToUpdate = agraDb.GetRace(currentName, currentDate);
-            if (raceToUpdate == null){
+            if (raceToUpdate == null)
+            {
                 return AddRaceAndPlacings(currentName, currentDate, groupRank, raceLength, isNoRace, greys, places);
-            }else{
+            }
+            else
+            {
                 return UpdateRaceAndPlacings(currentName, currentDate, currentName, currentDate, groupRank, raceLength, isNoRace, greys, places);
             }
-            
+
         }
 
         //public static String test()
@@ -314,7 +262,7 @@ namespace agra_gui
             //    raceToAdd = isThere;
             //else
             //    raceToAdd = agraDb.AddRace(name, date, groupRank, raceLength);
-            
+
             //Greyhound newGreyhound = AddOrUpdateGreyhound(grey);
             //agraDb.AddPlacing(newGreyhound, raceToAdd, place);
             //if (greys.Length == places.Length)
@@ -332,7 +280,8 @@ namespace agra_gui
             return agraDb.deleteAllGreyhounds();
         }
 
-        public static bool deleteAllRaces(){
+        public static bool deleteAllRaces()
+        {
             return agraDb.deleteAllRaces();
         }
 
@@ -357,7 +306,7 @@ namespace agra_gui
             agraDb.AddRaceType("Sprint");
             agraDb.AddRaceType("Distance");
         }
-        #endregion 
+        #endregion
 
         #region standard and simply Retival
 
@@ -367,11 +316,13 @@ namespace agra_gui
             return agraDb.Greyhounds;
         }
 
-        public static void setGreyhounds(List<Greyhound> gs){
+        public static void setGreyhounds(List<Greyhound> gs)
+        {
             agraDb.Greyhounds = gs;
         }
 
-        public static void setRaces(List<Race> rs){
+        public static void setRaces(List<Race> rs)
+        {
             agraDb.Races = rs;
         }
 
@@ -452,10 +403,12 @@ namespace agra_gui
             return agraDb.GroupRanks;
         }
 
-        public static List<String> groupRankDisplay(){
+        public static List<String> groupRankDisplay()
+        {
             List<String> s = new List<string>();
             s.Add("Select Group Level");
-            foreach (GroupRank g in agraDb.GroupRanks){
+            foreach (GroupRank g in agraDb.GroupRanks)
+            {
                 s.Add(g.Name);
             }
             return s;
@@ -520,7 +473,7 @@ namespace agra_gui
             Dictionary<Placing, int> temp = agraDb.PointsFor(ps, places);
             foreach (Placing p in temp.Keys)
             {
-                pwp.Add(new PlacingWithPoint(p,temp[p].ToString()));
+                pwp.Add(new PlacingWithPoint(p, temp[p].ToString()));
             }
             return pwp;
         }
@@ -537,7 +490,7 @@ namespace agra_gui
 
             public Greyhound Greyhound { get { return thePlace.Greyhound; } }
 
-            public Race Race{get { return thePlace.Race; }}
+            public Race Race { get { return thePlace.Race; } }
 
             public String Distance { get { return thePlace.Race.RaceLength.ToString(); } }
 
@@ -555,7 +508,8 @@ namespace agra_gui
             return agraDb.Placings;
         }
 
-        public static List<Placing> ListPlacingsForRace(Race race){
+        public static List<Placing> ListPlacingsForRace(Race race)
+        {
             return agraDb.PlacingsFor(race);
         }
 
@@ -564,7 +518,7 @@ namespace agra_gui
             return agraDb.RaceLengths;
         }
 
-        
+
 
         public class RacePlaceDisplay
         {
@@ -588,7 +542,7 @@ namespace agra_gui
                     if (p.Race.Equals(theRace) && i < 8)
                     {
                         thePlacings[i] = p.Greyhound.Name;
-                        thePlacingPos[i] = p.Place +"";
+                        thePlacingPos[i] = p.Place + "";
                         i++;
                     }
                 }
@@ -693,14 +647,17 @@ namespace agra_gui
 
         public static List<Rank> Ranking(RankType rankType, bool sunset, DateTime sd, DateTime ed)
         {
-            if (rankType == RankType.Dam){
+            if (rankType == RankType.Dam)
+            {
                 return agraDb.RankingsForDamViaChildren(new DamPointScale(), sd, ed);
             }
-            if(rankType == RankType.Sire){
+            if (rankType == RankType.Sire)
+            {
                 return agraDb.RankingsForSireViaChildren(new SprintPointScale(), sd, ed);
             }
-            if (rankType == RankType.Sprint){
-                 return agraDb.RankComplete(new SprintPointScale(), 100, sunset, sd, ed);
+            if (rankType == RankType.Sprint)
+            {
+                return agraDb.RankComplete(new SprintPointScale(), 100, sunset, sd, ed);
             }
 
             return agraDb.RankComplete(new SSPointScale(), 100, sunset, sd, ed);
@@ -744,14 +701,14 @@ namespace agra_gui
         public static int RaceRankCount(string o)
         {
             return agraDb.Races.FindAll(
-                delegate(Race r){return r.GroupRank.Name.Equals(o);}).Count;
+                delegate(Race r) { return r.GroupRank.Name.Equals(o); }).Count;
         }
 
         public static int RaceRankTypeCount(string GroupRank, string Length)
         {
             return 0;
             //return agraDb.Races.FindAll(
-                //delegate(Race r) { return r.GroupRank.Name.Equals(GroupRank) && r.Race_Length.Length.Equals(Length); }).Count;
+            //delegate(Race r) { return r.GroupRank.Name.Equals(GroupRank) && r.Race_Length.Length.Equals(Length); }).Count;
         }
 
         public static int GreyhoundDistCount(string dist)
@@ -770,15 +727,18 @@ namespace agra_gui
 
         public static string GreyhoundDist(Greyhound g)
         {
-            int sprint=0;
+            int sprint = 0;
             int dist = 0;
             if (agraDb.RacesFor(g).Count > 0)
             {
                 foreach (Race r in agraDb.RacesFor(g))
                 {
-                    if (r.isDistance()){
+                    if (r.isDistance())
+                    {
                         dist++;
-                    }else{
+                    }
+                    else
+                    {
                         sprint++;
                     }
                 }
