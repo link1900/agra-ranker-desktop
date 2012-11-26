@@ -36,7 +36,7 @@ namespace agra_gui
             }
             int endCount = AgraDBController.agraDb.Greyhounds.Count;
             int totalAdded = endCount - startCount;
-            AgraDBController.Serialize();
+            AgraDBController.serialize();
             if (totalAdded == txtNames.Lines.Length && totalAdded > 0)
                 MessageBox.Show("Added all " + totalAdded + " Greyhound(s)", "Greyhound(s) Added");
             else if (totalAdded == 1)

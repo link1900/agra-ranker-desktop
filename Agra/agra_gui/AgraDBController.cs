@@ -14,12 +14,23 @@ namespace agra_gui
 {
     public class AgraDBController
     {
-        public static string filename = System.IO.Directory.GetCurrentDirectory() + "\\agraDB.dat";
         public static AgraDB agraDb;
 
-        public static Boolean xmlData = true;
         public static Hashtable forms = new Hashtable();
         public static bool defaultSunsetSetting = false;
+
+        public static void BootApp()
+        {
+            Settings.loadSettings();
+            LoadDatabase();
+            AgraDBController.loadGUI();
+        }
+
+        public static void LoadDatabase()
+        {
+            AgraDBController.deserialize();
+            AgraDBController.SortAll();
+        }
 
         #region gui
         public static void loadGUI()
@@ -66,14 +77,14 @@ namespace agra_gui
         #endregion
 
         #region Saving and Loading via Serialization
-        public static void Serialize()
+        public static void serialize()
         {
-            SerializeBinary();
+            serializeBinary();
         }
 
-        public static void SerializeBinary()
+        private static void serializeBinary()
         {
-            FileStream fs = new FileStream("AgraDB.dat", FileMode.Create);
+            FileStream fs = new FileStream(Settings.databaseFileName, FileMode.Create);
 
             BinaryFormatter formatter = new BinaryFormatter();
             try
@@ -91,29 +102,58 @@ namespace agra_gui
             }
         }
 
-        public static void Deserialize()
+        public static void deserialize()
         {
-            DeserializeBinary();
+            deserializeBinary();
         }
 
-        public static void DeserializeBinary()
+        private static void deserializeBinary()
         {
-            try
+            if (File.Exists(Settings.databaseFileName))
             {
-                FileStream fs = new FileStream("AgraDB.dat", FileMode.Open);
-                BinaryFormatter formatter = new BinaryFormatter();
-                // Deserialize the hashtable from the file and 
-                // assign the reference to the local variable.
-                agraDb = (AgraDB)formatter.Deserialize(fs);
-                fs.Close();
+                try
+                {
+                    FileStream fs = new FileStream(Settings.databaseFileName, FileMode.Open);
+                    BinaryFormatter formatter = new BinaryFormatter();
+                    agraDb = (AgraDB)formatter.Deserialize(fs);
+                    fs.Close();
+                }
+                catch (Exception e)
+                {
+                    Logging.log("Found database file but failed to deserialize. Following Exception Encountered: " + e.Message);
+                    backupDatabase();
+                    agraDb = new AgraDB();
+                    DefaultPointSetup();
+                }
             }
-            catch (Exception e)
+            else
             {
-                Console.WriteLine("Failed to deserialize. Reason: " + e.Message);
-                agraDb = new AgraDB();
-                DefaultPointSetup();
+                Logging.log(String.Format("Cannot find database file {0}", Settings.databaseFileName));
+                createNewDatabase();
             }
+        }
 
+        public static void createNewDatabase()
+        {
+            Logging.log(String.Format("Creating a new database file at location {0} with default rules", Settings.databaseFileName));
+            agraDb = new AgraDB();
+            DefaultPointSetup();
+        }
+
+        public static void checkForBackup()
+        {
+            if (agraDb != null && agraDb.lastBackup.AddMonths(1) < DateTime.Now)
+            {
+                backupDatabase();
+            }
+        }
+
+        public static void backupDatabase()
+        {
+            String from = Settings.databaseFileName;
+            String to = Settings.databaseFileName + DateTime.Now.ToFileTime().ToString();
+            Logging.log(String.Format("Backingup File from {0} to {1}", from, to));
+            File.Copy(from, to);
         }
 
         #endregion
@@ -385,18 +425,6 @@ namespace agra_gui
             }
             return gs;
         }
-
-
-        //public static IList GreyhoundDisplayConventer(List<Greyhound> greyList)
-        //{
-        //    List<GreyhoundDisplay> greys = new List<GreyhoundDisplay>();
-        //    //foreach (Greyhound g in greyList)
-        //    //{
-        //    //    GreyhoundDisplay s = new GreyhoundDisplay(g.Name, g.Sire.ToString(), g.Dam);
-        //    //    greys.Add(s);
-        //    //}
-        //    return greys;
-        //}
 
         public static IList ListAllGroupRanks()
         {
@@ -765,7 +793,7 @@ namespace agra_gui
         {
             return agraDb.GetGreyhound(greyhoundName);
         }
-        #endregion
+        
 
         internal static void SortAll()
         {
@@ -777,5 +805,6 @@ namespace agra_gui
         {
             return agraDb.PointScales[0].getPointPlaces();
         }
+        #endregion
     }
 }

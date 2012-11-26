@@ -30,6 +30,8 @@ To Do for 5.8
 
 
 v5.7 TODO:
+-add logging system
+-add settings system
 -bug races import from csv is broken for races that don't have all 8 dogs
 -bug race import from csv has suspected header problems
 -add json import, export functions

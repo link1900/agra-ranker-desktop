@@ -78,7 +78,7 @@ namespace agra_gui
         {
             if (addRace())
             {
-                AgraDBController.Serialize();
+                AgraDBController.serialize();
                 resetForm();
             }
             else

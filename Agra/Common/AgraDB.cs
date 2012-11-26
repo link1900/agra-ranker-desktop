@@ -24,6 +24,7 @@ namespace Common
         public List<GroupRank> GroupRanks;
         [DataMember]
         public List<string> RaceLengths;
+        public DateTime lastBackup;
 
         public AgraDB()
         {
@@ -33,6 +34,7 @@ namespace Common
             PointScales = new List<PointScale>();
             GroupRanks = new List<GroupRank>();
             RaceLengths = new List<string>();
+            lastBackup = DateTime.Now;
         }
         #region Greyhound
     public Greyhound AddGreyhound(String g)

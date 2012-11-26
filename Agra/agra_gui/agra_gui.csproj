@@ -79,6 +79,7 @@
       <DependentUpon>AboutBox1.cs</DependentUpon>
     </Compile>
     <Compile Include="AgraDBController.cs" />
+    <Compile Include="Backup.cs" />
     <Compile Include="ExportToExcel.cs" />
     <Compile Include="frmBreeding.cs">
       <SubType>Form</SubType>

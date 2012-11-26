@@ -7,7 +7,6 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml.Serialization;
-//using Excel = Microsoft.Office.Interop.Excel;
 using System.Reflection;
 using Common;
 
@@ -16,49 +15,42 @@ namespace agra_gui
 {
     public partial class frmMenu : Form
     {
-        private Random r;
         private bool displayingRankings = false;
         public frmMenu()
         {
             InitializeComponent();
-            r = new Random();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            LoadDatabase();
-            AgraDBController.loadGUI();
+            Logging.log("Loaded Agra Ranker");
+            TimeSpan loadLength = new TimeSpan();
+            DateTime mark = DateTime.Now;
+            AgraDBController.BootApp();
             SetupCalendarControl();
+
+            DateTime mark2 = DateTime.Now;
+            loadLength = mark2 - mark;
+            string results = "Database Loaded in " + loadLength.TotalSeconds.ToString() + " secounds";
+            lblMetaInfo.Text = results;
+            Logging.log(results);
         }
 
         private void frmMenu_FormClosing(object sender, FormClosingEventArgs e)
         {
-            AgraDBController.Serialize();
+            AgraDBController.serialize();
         }
-
+        #region setup
         private void SetupCalendarControl()
         {
             dtpMonthFilter.Enabled = false;
             dtpYear.Value = DateTime.Now;
             dtpMonthFilter.Value = DateTime.Now;
+            dtpStartDate.Value = DateTime.Now.AddMonths(-1);
+            dtpEndDate.Value = DateTime.Now;
         }
 
-        private void LoadDatabase()
-        {
-            TimeSpan loadLength = new TimeSpan();
-            DateTime mark = DateTime.Now;
 
-            AgraDBController.Deserialize();
-            //DatabaseStats();
-            AgraDBController.SortAll();
-
-            DateTime mark2 = DateTime.Now;
-            loadLength = mark2 - mark;
-            lblMetaInfo.Text = "Database Loaded in " + loadLength.TotalSeconds.ToString() + " secounds";
-            
-        }
-
-        #region setup
         private void informationUpdate()
         {
             lblMetaInfo.Text = AgraDBController.MetaInfo();
@@ -477,7 +469,7 @@ namespace agra_gui
             //dgvRankings.Update();
             Update(dgvRankings);
             lblMetaInfo.Text = "Ready";
-            AgraDBController.Serialize();
+            AgraDBController.serialize();
         }
 
         private void cbDate_CheckedChanged(object sender, EventArgs e)
@@ -522,7 +514,7 @@ namespace agra_gui
         private void btnClear_Click(object sender, EventArgs e)
         {
             dgvRankings.DataSource = null;
-            AgraDBController.Serialize();
+            AgraDBController.serialize();
         }
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
