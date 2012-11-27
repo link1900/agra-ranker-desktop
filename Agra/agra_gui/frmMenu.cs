@@ -469,7 +469,7 @@ namespace agra_gui
             //dgvRankings.Update();
             Update(dgvRankings);
             lblMetaInfo.Text = "Ready";
-            AgraDBController.serialize();
+            //AgraDBController.serialize();
         }
 
         private void cbDate_CheckedChanged(object sender, EventArgs e)
@@ -658,6 +658,11 @@ namespace agra_gui
         private void dgvRankings_DataSourceChanged(object sender, EventArgs e)
         {
             dgvRankings.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+        }
+
+        private void btnShowLogs_Click(object sender, EventArgs e)
+        {
+            AgraDBController.navTo(this, "logs");
         }
 
 

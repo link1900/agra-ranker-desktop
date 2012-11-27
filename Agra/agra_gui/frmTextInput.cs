@@ -460,7 +460,7 @@ namespace agra_gui
                 StringBuilder report = new StringBuilder();
                 gcount= AgraDBController.ListAllGreyhounds().Count;
                 report.Append("Exported " + gcount + " Greyhound(s)");
-                String data = Serialize(AgraDBController.ListAllGreyhounds());
+                String data = serializeJson(AgraDBController.ListAllGreyhounds());
                 if (gcount > 0)
                 {
                     FileStream file = new FileStream(saveFileDialog1.FileName, FileMode.OpenOrCreate, FileAccess.Write);
@@ -489,7 +489,7 @@ namespace agra_gui
             }
             if (!String.IsNullOrWhiteSpace(fileText))
             {
-                List<Greyhound> gs = Deserialize<List<Greyhound>>(fileText);
+                List<Greyhound> gs = deserializeJson<List<Greyhound>>(fileText);
                 AgraDBController.setGreyhounds(gs);
             }
             int gcount = AgraDBController.ListAllGreyhounds().Count;
@@ -498,7 +498,7 @@ namespace agra_gui
             MessageBox.Show(this, "Report: \r" + report.ToString(), "Report", MessageBoxButtons.OK);
         }
 
-        public static string Serialize<T>(T obj)
+        public static string serializeJson<T>(T obj)
         {
             System.Runtime.Serialization.Json.DataContractJsonSerializer serializer = new System.Runtime.Serialization.Json.DataContractJsonSerializer(obj.GetType());
             MemoryStream ms = new MemoryStream();
@@ -508,7 +508,7 @@ namespace agra_gui
             return retVal;
         }
 
-        public static T Deserialize<T>(string json)
+        public static T deserializeJson<T>(string json)
         {
             T obj = Activator.CreateInstance<T>();
             MemoryStream ms = new MemoryStream(Encoding.Unicode.GetBytes(json));

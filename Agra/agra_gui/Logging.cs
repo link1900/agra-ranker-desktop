@@ -12,10 +12,8 @@ namespace agra_gui
         {
             try
             {
-                //Opens a new file stream which allows asynchronous reading and writing
                 using (StreamWriter sw = new StreamWriter(new FileStream(Settings.logFileName, FileMode.Append, FileAccess.Write, FileShare.ReadWrite)))
                 {
-                    //Writes the method name with the exception and writes the exception underneath
                     sw.WriteLine(String.Format("{0} ({1}) - {2}", DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString(), text.ToString()));
                 }
             }
@@ -27,5 +25,16 @@ namespace agra_gui
                 }
             }
         }
+
+        public static String getLogs()
+        {
+            String foundLogs = "";
+            using (StreamReader re = new StreamReader(new FileStream(Settings.logFileName,FileMode.Open)))
+            {
+                foundLogs = re.ReadToEnd();
+            }
+            return foundLogs;
+        }
+
     }
 }

@@ -21,12 +21,6 @@ namespace agra_gui
         {
 
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private DateTime monthMaker(DateTime month)
         {
             DateTime d = new DateTime(month.Year, month.Month, 1);
@@ -82,7 +76,12 @@ namespace agra_gui
             stats.AppendLine(AgraDBController.GreyhoundDistCount("Distance").ToString() + " Distance Dogs");
             stats.AppendLine(AgraDBController.GreyhoundDistCount("Both").ToString() + " All Rounders Dogs");
 
-            txtStats.Text = stats.ToString();
+            richTextBox1.Text = stats.ToString();
+        }
+
+        private void frmStats_Activated(object sender, EventArgs e)
+        {
+            DatabaseStats();
         }
     }
 }

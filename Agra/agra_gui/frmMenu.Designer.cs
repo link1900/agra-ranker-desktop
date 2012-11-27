@@ -66,6 +66,7 @@ namespace agra_gui
             this.label2 = new System.Windows.Forms.Label();
             this.dtpEndDate = new System.Windows.Forms.DateTimePicker();
             this.cbFilterMonth = new System.Windows.Forms.CheckBox();
+            this.btnShowLogs = new System.Windows.Forms.Button();
             this.gbMenu.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRankings)).BeginInit();
@@ -76,7 +77,7 @@ namespace agra_gui
             // 
             // btnGoCGrey
             // 
-            this.btnGoCGrey.Location = new System.Drawing.Point(130, 17);
+            this.btnGoCGrey.Location = new System.Drawing.Point(96, 15);
             this.btnGoCGrey.Name = "btnGoCGrey";
             this.btnGoCGrey.Size = new System.Drawing.Size(110, 23);
             this.btnGoCGrey.TabIndex = 0;
@@ -86,8 +87,9 @@ namespace agra_gui
             // 
             // gbMenu
             // 
-            this.gbMenu.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.gbMenu.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gbMenu.Controls.Add(this.btnShowLogs);
             this.gbMenu.Controls.Add(this.btnStats);
             this.gbMenu.Controls.Add(this.buttonDatabase);
             this.gbMenu.Controls.Add(this.radRaceSearch);
@@ -109,7 +111,7 @@ namespace agra_gui
             // 
             // btnStats
             // 
-            this.btnStats.Location = new System.Drawing.Point(246, 42);
+            this.btnStats.Location = new System.Drawing.Point(212, 42);
             this.btnStats.Name = "btnStats";
             this.btnStats.Size = new System.Drawing.Size(77, 23);
             this.btnStats.TabIndex = 10;
@@ -119,9 +121,9 @@ namespace agra_gui
             // 
             // buttonDatabase
             // 
-            this.buttonDatabase.Location = new System.Drawing.Point(329, 17);
+            this.buttonDatabase.Location = new System.Drawing.Point(295, 15);
             this.buttonDatabase.Name = "buttonDatabase";
-            this.buttonDatabase.Size = new System.Drawing.Size(77, 23);
+            this.buttonDatabase.Size = new System.Drawing.Size(75, 23);
             this.buttonDatabase.TabIndex = 9;
             this.buttonDatabase.Text = "Database";
             this.buttonDatabase.UseVisualStyleBackColor = true;
@@ -151,9 +153,9 @@ namespace agra_gui
             // 
             // btnAbout
             // 
-            this.btnAbout.Location = new System.Drawing.Point(329, 42);
+            this.btnAbout.Location = new System.Drawing.Point(295, 42);
             this.btnAbout.Name = "btnAbout";
-            this.btnAbout.Size = new System.Drawing.Size(77, 23);
+            this.btnAbout.Size = new System.Drawing.Size(75, 23);
             this.btnAbout.TabIndex = 8;
             this.btnAbout.Text = "About";
             this.btnAbout.UseVisualStyleBackColor = true;
@@ -161,7 +163,7 @@ namespace agra_gui
             // 
             // btnDataInput
             // 
-            this.btnDataInput.Location = new System.Drawing.Point(130, 42);
+            this.btnDataInput.Location = new System.Drawing.Point(96, 42);
             this.btnDataInput.Name = "btnDataInput";
             this.btnDataInput.Size = new System.Drawing.Size(110, 23);
             this.btnDataInput.TabIndex = 6;
@@ -181,15 +183,15 @@ namespace agra_gui
             // 
             this.btnExportToExcel.Location = new System.Drawing.Point(6, 42);
             this.btnExportToExcel.Name = "btnExportToExcel";
-            this.btnExportToExcel.Size = new System.Drawing.Size(118, 23);
+            this.btnExportToExcel.Size = new System.Drawing.Size(84, 23);
             this.btnExportToExcel.TabIndex = 6;
-            this.btnExportToExcel.Text = "Export Grid To Excel";
+            this.btnExportToExcel.Text = "Export Grid";
             this.btnExportToExcel.UseVisualStyleBackColor = true;
             this.btnExportToExcel.Click += new System.EventHandler(this.btnExportToExcel_Click);
             // 
             // btnNavToBreed
             // 
-            this.btnNavToBreed.Location = new System.Drawing.Point(246, 17);
+            this.btnNavToBreed.Location = new System.Drawing.Point(212, 15);
             this.btnNavToBreed.Name = "btnNavToBreed";
             this.btnNavToBreed.Size = new System.Drawing.Size(77, 23);
             this.btnNavToBreed.TabIndex = 4;
@@ -211,9 +213,9 @@ namespace agra_gui
             // 
             // btnGoCRace
             // 
-            this.btnGoCRace.Location = new System.Drawing.Point(6, 17);
+            this.btnGoCRace.Location = new System.Drawing.Point(6, 15);
             this.btnGoCRace.Name = "btnGoCRace";
-            this.btnGoCRace.Size = new System.Drawing.Size(118, 23);
+            this.btnGoCRace.Size = new System.Drawing.Size(84, 23);
             this.btnGoCRace.TabIndex = 1;
             this.btnGoCRace.Text = "Add Race";
             this.btnGoCRace.UseVisualStyleBackColor = true;
@@ -240,9 +242,9 @@ namespace agra_gui
             this.dgvRankings.AllowUserToAddRows = false;
             this.dgvRankings.AllowUserToDeleteRows = false;
             this.dgvRankings.AllowUserToOrderColumns = true;
-            this.dgvRankings.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvRankings.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvRankings.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
             this.dgvRankings.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvRankings.ContextMenuStrip = this.contextMenuStrip1;
@@ -274,8 +276,8 @@ namespace agra_gui
             // 
             // groupBox1
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.btnListAllRacePlace);
             this.groupBox1.Controls.Add(this.btnGreyList);
             this.groupBox1.Controls.Add(this.btnRank);
@@ -372,8 +374,8 @@ namespace agra_gui
             // 
             // gbDataDisplay
             // 
-            this.gbDataDisplay.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.gbDataDisplay.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.gbDataDisplay.Controls.Add(this.dtpYear);
             this.gbDataDisplay.Controls.Add(this.cbFilterYear);
             this.gbDataDisplay.Controls.Add(this.rbSB);
@@ -485,6 +487,16 @@ namespace agra_gui
             this.cbFilterMonth.UseVisualStyleBackColor = true;
             this.cbFilterMonth.CheckedChanged += new System.EventHandler(this.cbDate_CheckedChanged);
             // 
+            // btnShowLogs
+            // 
+            this.btnShowLogs.Location = new System.Drawing.Point(376, 15);
+            this.btnShowLogs.Name = "btnShowLogs";
+            this.btnShowLogs.Size = new System.Drawing.Size(75, 23);
+            this.btnShowLogs.TabIndex = 11;
+            this.btnShowLogs.Text = "Logs";
+            this.btnShowLogs.UseVisualStyleBackColor = true;
+            this.btnShowLogs.Click += new System.EventHandler(this.btnShowLogs_Click);
+            // 
             // frmMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -555,6 +567,7 @@ namespace agra_gui
         private System.Windows.Forms.Button btnGreyList;
         private System.Windows.Forms.Button buttonDatabase;
         private System.Windows.Forms.Button btnStats;
+        private System.Windows.Forms.Button btnShowLogs;
     }
 }
 

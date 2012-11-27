@@ -12,7 +12,6 @@ To Do for 5.8
 -Total points handed out, and all the points handed out for each categoriy on dual scale
 -Depth table for breeding..that is a tree with each of the children and there points.
 -Depth ranking. That is you can see granddam and grandsire breeding rankings.
-
 -Create a rules file. for things like sunset, points maxium sunset
 -Display point table in data view
 -Add an option to export to word...with an embedded standard template...or afile selector and table replacer fucntionaility
@@ -23,28 +22,33 @@ To Do for 5.8
 -Make the race info and greyhound info buttons data grid view context senvative
 -on delete all clear the main datagridview
 -move to sqllite database...yes really. its about time. seriliation sucks because you can't do version control!!!
--Bug: there is lag when selecting a dog from drop list
+
 -Import all greyhounds and race data
 -All data in one database
 -All breeding entered for 20 years
+-Unit test all pieces of code and get code coverage up
 
 
 v5.7 TODO:
--add logging system
+-Add test to the greyhound crud
+-Add test to the race crud
+-Add test to the rankings
 -add settings system
+-add breeding text boxes for the race, so you can enter the breeding as you go. also displays the current breeding
+-Bug: there is lag when selecting a dog from drop list, possible fix by making the textbox leave, and change events (some are heavy) onto another thead. test by removing events first though
+-Added setting for Saving the options you have selected on exit.
 -bug races import from csv is broken for races that don't have all 8 dogs
 -bug race import from csv has suspected header problems
 -add json import, export functions
 -add xml import and export functions
--Added setting for Saving the options you have selected on exit.
--add a new backup system for serialziations. before a new file is created make a hard file backup. store details in the settings file.
 -Calendar preloading assistence for the year. So races are known for that year before hand. Flags missing races for a month.(Maybe check missing race button/race with expected data check)
 -Improvement: Allow for csv export by default instead of excel
 -Bug: Export to csv is not working correctly for grid, should annotate with " and remove ending commas
--add the ability to auto fill a greyhounds breeding, by reading online data sources
+-add the ability to auto fill a greyhounds breeding, by reading online data sources http://watin.org/
 
 v5.7 Changes:
-
+-add logging system
+-add a new backup system for serialziations. before a new file is created make a hard file backup. store details in the settings file.
 
 v5.6.2 Changes:
 -Add the ability to mark a race as a no race and have no points for race attriubte to the rankings

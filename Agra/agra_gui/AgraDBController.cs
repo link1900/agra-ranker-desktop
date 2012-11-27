@@ -29,7 +29,8 @@ namespace agra_gui
         public static void LoadDatabase()
         {
             AgraDBController.deserialize();
-            AgraDBController.SortAll();
+            checkForBackup();
+            AgraDBController.sortAll();
         }
 
         #region gui
@@ -50,6 +51,7 @@ namespace agra_gui
             forms.Add("gInfo", new frmGreyhoundInfo());
             forms.Add("about", new AboutBox1());
             forms.Add("stats", new frmStats());
+            forms.Add("logs", new frmLogs());
         }
 
         public static Form getForm(String name)
@@ -82,10 +84,13 @@ namespace agra_gui
             serializeBinary();
         }
 
-        private static void serializeBinary()
+        private static Boolean serializeBinary()
         {
+            Logging.log("Backing up file before saving over it");
+            Logging.log("Removing old temp file before creating a new one");
+            deleteFile(Settings.databaseTempFileName);
+            copyFile(Settings.databaseFileName, Settings.databaseTempFileName);
             FileStream fs = new FileStream(Settings.databaseFileName, FileMode.Create);
-
             BinaryFormatter formatter = new BinaryFormatter();
             try
             {
@@ -93,13 +98,14 @@ namespace agra_gui
             }
             catch (SerializationException e)
             {
-                Console.WriteLine("Failed to serialize. Reason: " + e.Message);
-                throw;
+                Logging.log("Failed to save the database. Reason: " + e.Message);
+                return false;
             }
             finally
             {
                 fs.Close();
             }
+            return true;
         }
 
         public static void deserialize()
@@ -151,9 +157,50 @@ namespace agra_gui
         public static void backupDatabase()
         {
             String from = Settings.databaseFileName;
-            String to = Settings.databaseFileName + DateTime.Now.ToFileTime().ToString();
+            String to = Settings.databaseFileName + "." + DateTime.Now.ToFileTime();
             Logging.log(String.Format("Backingup File from {0} to {1}", from, to));
-            File.Copy(from, to);
+            copyFile(from, to);
+        }
+
+        public static void copyFile(String from, String to)
+        {
+            Logging.log(String.Format("Coping File from {0} to {1}", from, to));
+            if (!File.Exists(to))
+            {
+                try
+                {
+                    File.Copy(from, to);
+                }
+                catch (Exception e)
+                {
+                    Logging.log("File copy failed. Reason: " + e.ToString());
+                }
+            }
+            else
+            {
+                Logging.log("Cannot copy file as it already exists");
+            }
+        }
+
+        public static void deleteFile(String fileName)
+        {
+            Logging.log(String.Format("Deleting File {0}", fileName));
+            if (File.Exists(fileName))
+            {
+                try
+                {
+                    File.Delete(fileName);
+                }
+                catch (Exception e)
+                {
+                    Logging.log(String.Format("Failed to delete file {0}. Reason: " + e.ToString(), fileName));
+                }
+                
+            }
+            else
+            {
+                Logging.log(String.Format("Cannot delete file {0} as it does not exist", fileName));
+            }
         }
 
         #endregion
@@ -163,36 +210,6 @@ namespace agra_gui
         {
             return agraDb.AddGreyhound(gName);
         }
-
-        //public static Race AddOrUpdateRace(string rName, DateTime date, GroupRank groupRank, Race_Type raceLength)
-        //{
-        //    Race find = Race.Retrieve(rName);
-        //    if (find != null && find.Name.Equals(rName, StringComparison.OrdinalIgnoreCase))
-        //        return find;
-        //    else
-        //    {
-        //        Race raceToAdd = new Race(rName, date, groupRank, raceLength);
-        //        raceToAdd.Persist();
-        //        return Race.Retrieve(raceToAdd.Id);
-        //    }
-        //}
-
-
-        //public static void AddRace(string name, DateTime date, GroupRank groupRank, Race_Type raceLength)
-        //{
-        //    Race raceToAdd = new Race(name, date, groupRank, raceLength);
-        //    raceToAdd.Persist();
-
-        //}
-
-
-        //public static void AddRaceAndPlacing(String name, DateTime date, GroupRank groupRank,
-        //    Race_Type raceLength, string grey, short place)
-        //{
-        //    Race race = AddOrUpdateRace(name, date, groupRank, raceLength);
-        //    Greyhound newGreyhound = AddOrUpdateGreyhound(grey);
-        //    AddPlacing(newGreyhound, race, place);
-        //}
 
         public static bool AddRaceAndPlacings(String name, DateTime date, GroupRank groupRank,
             int raceLength, bool isNoRace, string[] greys, short[] places)
@@ -256,63 +273,6 @@ namespace agra_gui
                 return UpdateRaceAndPlacings(currentName, currentDate, currentName, currentDate, groupRank, raceLength, isNoRace, greys, places);
             }
 
-        }
-
-        //public static String test()
-        //{
-        //    StringBuilder report = new StringBuilder();
-
-        //    //report.AppendLine(agraDb.GetRaceType("Group 1").ToString());
-        //    report.AppendLine(agraDb.GetRaceType("Distance").ToString());
-        //    report.AppendLine(agraDb.GetRaceType("Sprint").ToString());
-        //    report.AppendLine(agraDb.GetRaceType("sprint").ToString());
-        //    report.AppendLine(agraDb.GetRaceType("   sprint  ").ToString());
-
-        //    // report.AppendLine(agraDb.GetGroupRank("Stay").ToString());
-        //    report.AppendLine(agraDb.GetGroupRank("Group 1").ToString());
-        //    report.AppendLine(agraDb.GetGroupRank("Group 2").ToString());
-        //    report.AppendLine(agraDb.GetGroupRank("Group 3").ToString());
-        //    report.AppendLine(agraDb.GetGroupRank(" group 1 ").ToString());
-
-        //    return report.ToString();
-
-        //}
-
-        //public static bool AddRaceAndPlacings(String name, String date, String groupRank,
-        //    String raceLength, string[] greys, short[] places)
-        //{
-        //        //DateTime theDate = DateTime.Parse(date);
-        //        //GroupRank theGroupRank = agraDb.GetGroupRank(groupRank);
-        //        ////string theRaceType = agraDb.GetRaceType(raceLength);
-
-        //        //if (theGroupRank != null && theRaceType != null && theDate != null)
-        //        //{
-        //        //    return AddRaceAndPlacings(name, theDate, theGroupRank, theRaceType, greys, places);
-        //        //}
-        //        //else
-        //            return false;
-        //}
-
-        public static void AddRaceAndPlacing(String name, DateTime date, GroupRank groupRank,
-            string raceLength, string grey, short place)
-        {
-            //Race isThere = agraDb.GetRace(name, date);
-            //Race raceToAdd;
-            //if (isThere != null)
-            //    raceToAdd = isThere;
-            //else
-            //    raceToAdd = agraDb.AddRace(name, date, groupRank, raceLength);
-
-            //Greyhound newGreyhound = AddOrUpdateGreyhound(grey);
-            //agraDb.AddPlacing(newGreyhound, raceToAdd, place);
-            //if (greys.Length == places.Length)
-            //{
-            //    for (int i = 0; i < greys.Length; i++)
-            //    {
-            //        Greyhound newGreyhound = AddOrUpdateGreyhound(greys[i]);
-            //        agraDb.AddPlacing(newGreyhound, raceToAdd, places[i]);
-            //    }
-            //}
         }
 
         public static bool deleteAllGreyhounds()
@@ -795,7 +755,7 @@ namespace agra_gui
         }
         
 
-        internal static void SortAll()
+        internal static void sortAll()
         {
             agraDb.Greyhounds.Sort(AgraDB.CompareGreyhoundNames);
         }

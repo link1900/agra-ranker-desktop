@@ -1,6 +1,6 @@
 ﻿namespace agra_gui
 {
-    partial class frmStats
+    partial class frmLogs
     {
         /// <summary>
         /// Required designer variable.
@@ -28,36 +28,35 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.logsBox = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
-            // richTextBox1
+            // logsBox
             // 
-            this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBox1.Location = new System.Drawing.Point(0, 0);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(363, 256);
-            this.richTextBox1.TabIndex = 0;
-            this.richTextBox1.Text = "";
+            this.logsBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.logsBox.Location = new System.Drawing.Point(0, 0);
+            this.logsBox.Name = "logsBox";
+            this.logsBox.Size = new System.Drawing.Size(488, 555);
+            this.logsBox.TabIndex = 0;
+            this.logsBox.Text = "";
             // 
-            // frmStats
+            // frmLogs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(363, 256);
-            this.Controls.Add(this.richTextBox1);
-            this.Name = "frmStats";
+            this.ClientSize = new System.Drawing.Size(488, 555);
+            this.Controls.Add(this.logsBox);
+            this.Name = "frmLogs";
             this.ShowIcon = false;
-            this.Text = "Stats";
-            this.Activated += new System.EventHandler(this.frmStats_Activated);
-            this.Load += new System.EventHandler(this.frmStats_Load);
+            this.ShowInTaskbar = false;
+            this.Text = "Logs";
+            this.Activated += new System.EventHandler(this.frmLogs_Activated);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.RichTextBox richTextBox1;
-
+        private System.Windows.Forms.RichTextBox logsBox;
     }
 }

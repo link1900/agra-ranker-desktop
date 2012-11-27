@@ -15,6 +15,8 @@ namespace agra_gui
         private Race currentRace;
         private Label[] lblGreyInfo = new Label[8];
         private Dictionary<TextBox, Label> col = new Dictionary<TextBox,Label>();
+        private Dictionary<TextBox, TextBox> sires = new Dictionary<TextBox, TextBox>();
+        private Dictionary<TextBox, TextBox> dams = new Dictionary<TextBox, TextBox>();
         public frmAddRace()
         {
             InitializeComponent();
@@ -252,9 +254,6 @@ namespace agra_gui
 
         private void btndebugFill_Click(object sender, EventArgs e)
         {
-            //ArrayList randomNames = AgraDBController.getRandomRaceDogs(8);
-            //gs.Shuffle();
-            //GetSelectedGroupRank();
             string[] ss = new string[8];
             ss[0] = "1";
             ss[1] = "2";
@@ -271,8 +270,6 @@ namespace agra_gui
                 t.Text = ss[i];
                 i++;
             }
-            //txtGreyPos1.Text = gs[0].Greyhound_name;
-            //textBox1.Text = gs[0].Greyhound_name;
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
@@ -326,13 +323,20 @@ namespace agra_gui
         private void txtGreyInfo_Leave(object sender, EventArgs e)
         {
             TextBox temp = (TextBox)sender;
-
-            //int textNumber = new List<TextBox>(getTxts()).BinarySearch(temp);
             if (!String.IsNullOrEmpty(temp.Text))
             {
                 Greyhound foundGreyhound = AgraDBController.findGreyhound(temp.Text);
                 if (foundGreyhound != null)
                 {
+                    if (foundGreyhound.Sire != null)
+                    {
+                        sires[temp].Text = foundGreyhound.Sire.Name;
+                    }
+                    if (foundGreyhound.Dam != null)
+                    {
+                        dams[temp].Text = foundGreyhound.Dam.Name;
+                    }
+                    
                     col[temp].Text = AgraDBController.agraDb.PointsFor(new SSPointScale(), foundGreyhound, AgraDBController.defaultSunsetSetting).ToString();
                     frmGreyhoundInfo tempab = (frmGreyhoundInfo)AgraDBController.getForm("gInfo");
                     if (tempab != null && !tempab.Visible)
@@ -371,6 +375,7 @@ namespace agra_gui
             int i = 1;
             foreach (TextBox t in getTxts())
             {
+                //create point labels
                 t.Name = "txtGreyInfo" + i;
                 Label aNewlabel = new System.Windows.Forms.Label();
                 aNewlabel.AutoSize = true;
@@ -379,15 +384,37 @@ namespace agra_gui
                 tempPoint.Offset(t.Width + 3, 0);
                 gbPlacings.Controls.Add(aNewlabel);
                 aNewlabel.Location = tempPoint;
-                
-
-
                 aNewlabel.Visible = true;
                 lblGreyInfo[i - 1] = aNewlabel;
-                //t.Leave += txtGreyInfo_Leave;
-                t.TextChanged += txtGreyInfo_Leave;
                 aNewlabel.Click += lblGreyInfo_Click;
                 col.Add(t, aNewlabel);
+
+                //create sire text boxes
+                TextBox aNewTextBox = new System.Windows.Forms.TextBox();
+                aNewTextBox.Size = new Size(116, 20);
+                aNewTextBox.Name = "txtGreySirePos" + i;
+                Point tempPoint2 = t.Location;
+                tempPoint2.Offset(213, 0);
+                aNewTextBox.Location = tempPoint2;
+                gbPlacings.Controls.Add(aNewTextBox);
+                aNewTextBox.Visible = true;
+                sires.Add(t, aNewTextBox);
+
+                //create dam text boxes
+                TextBox aNewDamTextBox = new System.Windows.Forms.TextBox();
+                aNewDamTextBox.Size = new Size(116, 20);
+                aNewDamTextBox.Name = "txtGreyDamPos" + i;
+                Point tempPoint3 = tempPoint2;
+                tempPoint3.Offset(125, 0);
+                aNewDamTextBox.Location = tempPoint3;
+                gbPlacings.Controls.Add(aNewDamTextBox);
+                aNewDamTextBox.Visible = true;
+                dams.Add(t, aNewDamTextBox);
+
+                //setup events on textboxes
+                //t.Leave += txtGreyInfo_Leave;
+                t.TextChanged += txtGreyInfo_Leave;
+
                 i++;
             }
         }
@@ -492,6 +519,11 @@ namespace agra_gui
         private void cbNoRace_CheckedChanged(object sender, EventArgs e)
         {
             refreshPointDisplay();
+        }
+
+        private void lblDamColumn_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

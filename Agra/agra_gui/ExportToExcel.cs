@@ -154,7 +154,7 @@ namespace agra_gui
                 objClassType = Type.GetTypeFromProgID("Excel.Application");
                 if (objClassType == null || csvOverride)
                 {
-                    Console.WriteLine("No Excel found on system, exporting in csv");
+                    Logging.log("No Excel found on system, exporting in csv");
                     writeCSV(data);
                     return;
                 }
