@@ -328,14 +328,14 @@ namespace agra_gui
                 Greyhound foundGreyhound = AgraDBController.findGreyhound(temp.Text);
                 if (foundGreyhound != null)
                 {
-                    if (foundGreyhound.Sire != null)
-                    {
-                        sires[temp].Text = foundGreyhound.Sire.Name;
-                    }
-                    if (foundGreyhound.Dam != null)
-                    {
-                        dams[temp].Text = foundGreyhound.Dam.Name;
-                    }
+                    //if (foundGreyhound.Sire != null)
+                    //{
+                    //    sires[temp].Text = foundGreyhound.Sire.Name;
+                    //}
+                    //if (foundGreyhound.Dam != null)
+                    //{
+                    //    dams[temp].Text = foundGreyhound.Dam.Name;
+                    //}
                     
                     col[temp].Text = AgraDBController.agraDb.PointsFor(new SSPointScale(), foundGreyhound, AgraDBController.defaultSunsetSetting).ToString();
                     frmGreyhoundInfo tempab = (frmGreyhoundInfo)AgraDBController.getForm("gInfo");
@@ -390,26 +390,26 @@ namespace agra_gui
                 col.Add(t, aNewlabel);
 
                 //create sire text boxes
-                TextBox aNewTextBox = new System.Windows.Forms.TextBox();
-                aNewTextBox.Size = new Size(116, 20);
-                aNewTextBox.Name = "txtGreySirePos" + i;
-                Point tempPoint2 = t.Location;
-                tempPoint2.Offset(213, 0);
-                aNewTextBox.Location = tempPoint2;
-                gbPlacings.Controls.Add(aNewTextBox);
-                aNewTextBox.Visible = true;
-                sires.Add(t, aNewTextBox);
+                //TextBox aNewTextBox = new System.Windows.Forms.TextBox();
+                //aNewTextBox.Size = new Size(116, 20);
+                //aNewTextBox.Name = "txtGreySirePos" + i;
+                //Point tempPoint2 = t.Location;
+                //tempPoint2.Offset(213, 0);
+                //aNewTextBox.Location = tempPoint2;
+                //gbPlacings.Controls.Add(aNewTextBox);
+                //aNewTextBox.Visible = true;
+                //sires.Add(t, aNewTextBox);
 
-                //create dam text boxes
-                TextBox aNewDamTextBox = new System.Windows.Forms.TextBox();
-                aNewDamTextBox.Size = new Size(116, 20);
-                aNewDamTextBox.Name = "txtGreyDamPos" + i;
-                Point tempPoint3 = tempPoint2;
-                tempPoint3.Offset(125, 0);
-                aNewDamTextBox.Location = tempPoint3;
-                gbPlacings.Controls.Add(aNewDamTextBox);
-                aNewDamTextBox.Visible = true;
-                dams.Add(t, aNewDamTextBox);
+                ////create dam text boxes
+                //TextBox aNewDamTextBox = new System.Windows.Forms.TextBox();
+                //aNewDamTextBox.Size = new Size(116, 20);
+                //aNewDamTextBox.Name = "txtGreyDamPos" + i;
+                //Point tempPoint3 = tempPoint2;
+                //tempPoint3.Offset(125, 0);
+                //aNewDamTextBox.Location = tempPoint3;
+                //gbPlacings.Controls.Add(aNewDamTextBox);
+                //aNewDamTextBox.Visible = true;
+                //dams.Add(t, aNewDamTextBox);
 
                 //setup events on textboxes
                 //t.Leave += txtGreyInfo_Leave;

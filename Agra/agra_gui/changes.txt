@@ -27,14 +27,13 @@ To Do for 5.8
 -All data in one database
 -All breeding entered for 20 years
 -Unit test all pieces of code and get code coverage up
-
+-add settings system
+-add breeding text boxes for the race, so you can enter the breeding as you go. also displays the current breeding
 
 v5.7 TODO:
 -Add test to the greyhound crud
 -Add test to the race crud
 -Add test to the rankings
--add settings system
--add breeding text boxes for the race, so you can enter the breeding as you go. also displays the current breeding
 -Bug: there is lag when selecting a dog from drop list, possible fix by making the textbox leave, and change events (some are heavy) onto another thead. test by removing events first though
 -Added setting for Saving the options you have selected on exit.
 -bug races import from csv is broken for races that don't have all 8 dogs

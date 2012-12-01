@@ -53,8 +53,11 @@ namespace agra_gui
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.gbRace = new System.Windows.Forms.GroupBox();
+            this.txtPrizeMoney = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtTrack = new System.Windows.Forms.TextBox();
+            this.lblTrack = new System.Windows.Forms.Label();
             this.lblNoRace = new System.Windows.Forms.Label();
-            this.btndebugFill = new System.Windows.Forms.Button();
             this.cbNoRace = new System.Windows.Forms.CheckBox();
             this.cbRaceLength = new System.Windows.Forms.ComboBox();
             this.lblRaceLength = new System.Windows.Forms.Label();
@@ -64,16 +67,11 @@ namespace agra_gui
             this.dtpRaceDate = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.btndebugFill = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.btnDeleteRace = new System.Windows.Forms.Button();
-            this.lblSireColumn = new System.Windows.Forms.Label();
-            this.lblDamColumn = new System.Windows.Forms.Label();
-            this.lblTrack = new System.Windows.Forms.Label();
-            this.txtTrack = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txtPrizeMoney = new System.Windows.Forms.TextBox();
             this.gbPlacings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudPlace8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudPlace7)).BeginInit();
@@ -109,8 +107,6 @@ namespace agra_gui
             // 
             // gbPlacings
             // 
-            this.gbPlacings.Controls.Add(this.lblDamColumn);
-            this.gbPlacings.Controls.Add(this.lblSireColumn);
             this.gbPlacings.Controls.Add(this.lblPoints);
             this.gbPlacings.Controls.Add(this.lblbox1);
             this.gbPlacings.Controls.Add(this.textBox7);
@@ -133,7 +129,7 @@ namespace agra_gui
             this.gbPlacings.Controls.Add(this.label1);
             this.gbPlacings.Location = new System.Drawing.Point(12, 166);
             this.gbPlacings.Name = "gbPlacings";
-            this.gbPlacings.Size = new System.Drawing.Size(509, 338);
+            this.gbPlacings.Size = new System.Drawing.Size(295, 338);
             this.gbPlacings.TabIndex = 29;
             this.gbPlacings.TabStop = false;
             this.gbPlacings.Text = "Placing Information";
@@ -437,35 +433,62 @@ namespace agra_gui
             this.gbRace.Controls.Add(this.label3);
             this.gbRace.Location = new System.Drawing.Point(12, 6);
             this.gbRace.Name = "gbRace";
-            this.gbRace.Size = new System.Drawing.Size(509, 133);
+            this.gbRace.Size = new System.Drawing.Size(295, 154);
             this.gbRace.TabIndex = 30;
             this.gbRace.TabStop = false;
             this.gbRace.Text = "Race Information";
             // 
+            // txtPrizeMoney
+            // 
+            this.txtPrizeMoney.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtPrizeMoney.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtPrizeMoney.Location = new System.Drawing.Point(391, 74);
+            this.txtPrizeMoney.Name = "txtPrizeMoney";
+            this.txtPrizeMoney.Size = new System.Drawing.Size(107, 20);
+            this.txtPrizeMoney.TabIndex = 42;
+            this.toolTip1.SetToolTip(this.txtPrizeMoney, "Testing");
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(318, 77);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(65, 13);
+            this.label6.TabIndex = 41;
+            this.label6.Text = "Prize Money";
+            // 
+            // txtTrack
+            // 
+            this.txtTrack.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtTrack.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtTrack.Location = new System.Drawing.Point(391, 45);
+            this.txtTrack.Name = "txtTrack";
+            this.txtTrack.Size = new System.Drawing.Size(107, 20);
+            this.txtTrack.TabIndex = 40;
+            this.toolTip1.SetToolTip(this.txtTrack, "Testing");
+            // 
+            // lblTrack
+            // 
+            this.lblTrack.AutoSize = true;
+            this.lblTrack.Location = new System.Drawing.Point(318, 48);
+            this.lblTrack.Name = "lblTrack";
+            this.lblTrack.Size = new System.Drawing.Size(35, 13);
+            this.lblTrack.TabIndex = 39;
+            this.lblTrack.Text = "Track";
+            // 
             // lblNoRace
             // 
             this.lblNoRace.AutoSize = true;
-            this.lblNoRace.Location = new System.Drawing.Point(318, 19);
+            this.lblNoRace.Location = new System.Drawing.Point(13, 138);
             this.lblNoRace.Name = "lblNoRace";
             this.lblNoRace.Size = new System.Drawing.Size(61, 13);
             this.lblNoRace.TabIndex = 38;
             this.lblNoRace.Text = "Is No Race";
             // 
-            // btndebugFill
-            // 
-            this.btndebugFill.Location = new System.Drawing.Point(446, 510);
-            this.btndebugFill.Name = "btndebugFill";
-            this.btndebugFill.Size = new System.Drawing.Size(75, 23);
-            this.btndebugFill.TabIndex = 31;
-            this.btndebugFill.Text = "DebugFill";
-            this.btndebugFill.UseVisualStyleBackColor = true;
-            this.btndebugFill.Visible = false;
-            this.btndebugFill.Click += new System.EventHandler(this.btndebugFill_Click);
-            // 
             // cbNoRace
             // 
             this.cbNoRace.AutoSize = true;
-            this.cbNoRace.Location = new System.Drawing.Point(391, 19);
+            this.cbNoRace.Location = new System.Drawing.Point(86, 131);
             this.cbNoRace.Name = "cbNoRace";
             this.cbNoRace.Size = new System.Drawing.Size(15, 14);
             this.cbNoRace.TabIndex = 37;
@@ -543,6 +566,17 @@ namespace agra_gui
             this.label3.TabIndex = 29;
             this.label3.Text = "Race Name";
             // 
+            // btndebugFill
+            // 
+            this.btndebugFill.Location = new System.Drawing.Point(446, 510);
+            this.btndebugFill.Name = "btndebugFill";
+            this.btndebugFill.Size = new System.Drawing.Size(75, 23);
+            this.btndebugFill.TabIndex = 31;
+            this.btndebugFill.Text = "DebugFill";
+            this.btndebugFill.UseVisualStyleBackColor = true;
+            this.btndebugFill.Visible = false;
+            this.btndebugFill.Click += new System.EventHandler(this.btndebugFill_Click);
+            // 
             // btnEdit
             // 
             this.btnEdit.Location = new System.Drawing.Point(11, 510);
@@ -577,68 +611,11 @@ namespace agra_gui
             this.btnDeleteRace.UseVisualStyleBackColor = true;
             this.btnDeleteRace.Click += new System.EventHandler(this.btnDeleteRace_Click);
             // 
-            // lblSireColumn
-            // 
-            this.lblSireColumn.AutoSize = true;
-            this.lblSireColumn.Location = new System.Drawing.Point(261, 16);
-            this.lblSireColumn.Name = "lblSireColumn";
-            this.lblSireColumn.Size = new System.Drawing.Size(25, 13);
-            this.lblSireColumn.TabIndex = 45;
-            this.lblSireColumn.Text = "Sire";
-            // 
-            // lblDamColumn
-            // 
-            this.lblDamColumn.AutoSize = true;
-            this.lblDamColumn.Location = new System.Drawing.Point(388, 16);
-            this.lblDamColumn.Name = "lblDamColumn";
-            this.lblDamColumn.Size = new System.Drawing.Size(29, 13);
-            this.lblDamColumn.TabIndex = 47;
-            this.lblDamColumn.Text = "Dam";
-            this.lblDamColumn.Click += new System.EventHandler(this.lblDamColumn_Click);
-            // 
-            // lblTrack
-            // 
-            this.lblTrack.AutoSize = true;
-            this.lblTrack.Location = new System.Drawing.Point(318, 48);
-            this.lblTrack.Name = "lblTrack";
-            this.lblTrack.Size = new System.Drawing.Size(35, 13);
-            this.lblTrack.TabIndex = 39;
-            this.lblTrack.Text = "Track";
-            // 
-            // txtTrack
-            // 
-            this.txtTrack.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.txtTrack.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtTrack.Location = new System.Drawing.Point(391, 45);
-            this.txtTrack.Name = "txtTrack";
-            this.txtTrack.Size = new System.Drawing.Size(107, 20);
-            this.txtTrack.TabIndex = 40;
-            this.toolTip1.SetToolTip(this.txtTrack, "Testing");
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(318, 77);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(65, 13);
-            this.label6.TabIndex = 41;
-            this.label6.Text = "Prize Money";
-            // 
-            // txtPrizeMoney
-            // 
-            this.txtPrizeMoney.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.txtPrizeMoney.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtPrizeMoney.Location = new System.Drawing.Point(391, 74);
-            this.txtPrizeMoney.Name = "txtPrizeMoney";
-            this.txtPrizeMoney.Size = new System.Drawing.Size(107, 20);
-            this.txtPrizeMoney.TabIndex = 42;
-            this.toolTip1.SetToolTip(this.txtPrizeMoney, "Testing");
-            // 
             // frmAddRace
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(531, 539);
+            this.ClientSize = new System.Drawing.Size(325, 539);
             this.Controls.Add(this.btnDeleteRace);
             this.Controls.Add(this.btndebugFill);
             this.Controls.Add(this.btnEdit);
@@ -712,8 +689,6 @@ namespace agra_gui
         private System.Windows.Forms.Label lblNoRace;
         private System.Windows.Forms.CheckBox cbNoRace;
         private System.Windows.Forms.Button btnDeleteRace;
-        private System.Windows.Forms.Label lblDamColumn;
-        private System.Windows.Forms.Label lblSireColumn;
         private System.Windows.Forms.TextBox txtPrizeMoney;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtTrack;
