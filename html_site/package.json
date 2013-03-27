@@ -1,0 +1,14 @@
+{
+  "name": "AGRA-Ranker",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "app.js"
+  },
+  "dependencies": {
+    "express": "*"
+  },
+  "engines": {
+    "node": "*"
+  }
+}

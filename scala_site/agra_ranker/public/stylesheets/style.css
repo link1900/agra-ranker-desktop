@@ -1,0 +1,21 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.copy {
+    background: none repeat scroll 0 0 #490E0E;
+    display: block;
+    font: 12px/40px "Trebuchet MS",Arial,Helvetica,sans-serif;
+    height: 40px;
+    text-align: center;
+}
+
+.footer {
+    background: none repeat scroll 0 0 #692020;
+    color: #FFFFFF;
+}

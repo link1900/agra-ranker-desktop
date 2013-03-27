@@ -1,0 +1,151 @@
+To Do for 5.8
+*db addtions*
+-add prize money field to races
+-add tracks to the database
+-Allow editing of the point table
+-Add the ability to mark a dog as disqulifield
+-Add ability to mark a dog as disquailied for a position
+*gui fixes*
+-Sorting of datagridviews
+-Ordering of datagridviews
+-Look at adding data from the rankings pre 95 to get all of the dogs from the 70s + plus a hall of fame rankings
+-Total points handed out, and all the points handed out for each categoriy on dual scale
+-Depth table for breeding..that is a tree with each of the children and there points.
+-Depth ranking. That is you can see granddam and grandsire breeding rankings.
+-Create a rules file. for things like sunset, points maxium sunset
+-Display point table in data view
+-Add an option to export to word...with an embedded standard template...or afile selector and table replacer fucntionaility
+-Sorting of data grids by any column
+-make the right click context senstive
+-get rid of list from right click menu of main data grid view
+-update the database status text box for each database operation
+-Make the race info and greyhound info buttons data grid view context senvative
+-on delete all clear the main datagridview
+-move to sqllite database...yes really. its about time. seriliation sucks because you can't do version control!!!
+
+-Import all greyhounds and race data
+-All data in one database
+-All breeding entered for 20 years
+-Unit test all pieces of code and get code coverage up
+-add settings system
+-add breeding text boxes for the race, so you can enter the breeding as you go. also displays the current breeding
+
+v5.7 TODO:
+-Add test to the greyhound crud
+-Add test to the race crud
+-Add test to the rankings
+-Bug: there is lag when selecting a dog from drop list, possible fix by making the textbox leave, and change events (some are heavy) onto another thead. test by removing events first though
+-Added setting for Saving the options you have selected on exit.
+-bug races import from csv is broken for races that don't have all 8 dogs
+-bug race import from csv has suspected header problems
+-add json import, export functions
+-add xml import and export functions
+-Calendar preloading assistence for the year. So races are known for that year before hand. Flags missing races for a month.(Maybe check missing race button/race with expected data check)
+-Improvement: Allow for csv export by default instead of excel
+-Bug: Export to csv is not working correctly for grid, should annotate with " and remove ending commas
+-add the ability to auto fill a greyhounds breeding, by reading online data sources http://watin.org/
+
+v5.7 Changes:
+-add logging system
+-add a new backup system for serialziations. before a new file is created make a hard file backup. store details in the settings file.
+
+v5.6.2 Changes:
+-Add the ability to mark a race as a no race and have no points for race attriubte to the rankings
+-On the breeding screen fix the length of the race column for the placings data grid view
+-bug nested window calls crashes
+-imprv added auto resize on the make ranker data grid
+-added placings to the database view of the race for debug understanding
+-bug add race after view race has the view race detail
+-imprv on race screen make the points a hyperlink text to the greyhound info
+-imprv add links to the parent on greyhound info
+-bug in point scale click button changes nothing including the total
+-Added greyhound link in rankings
+-Added pup link on greyhound info
+-Fixed a breed rankings bug where the lables and scales were completely wrong
+-Redone the layout for 1280x796 resolution
+-made a stats screen and button
+-Changed the logo on the about box
+
+v5.6 Changes:
+-Bug: Cannot delete a race
+-Export races with, no race, and all places and heading
+-Import races based on heading
+-Import races with norace placings, and place type 0
+-Add ability to mark a race as a no race
+-write python script to fill in placing numbers so legacy export is imported correctly. Rule is if it 4 or less its stagged placings, however if its 5 or more dogs then its kept placings.
+-Added sorting to ranking via linq
+-Test: Check the rankings are still correct by comparing with the 5.3 ones
+-Added 2nd level sorting to ranking by greyhound name, alpha ascending
+-Race Life Cycle Testing
+-fix up ranking
+-Bug: edit race doesnt load group rank and length correctly
+-Greyhound Life Cycle testing
+-points break down for a greyhound info screen
+-Export to excel feature to be in arial ten font. 
+-Sire export to be like dam export, that is one list.
+-Improvement: Error messages on the add race screen now correctly tell you invalid data
+-Proper Error messages on the add race screen
+-The drop downs for group and dist should not be pre-popluated
+-Bug Fix: import and export is not reporting correctly what is happenering and when it does report it is wrong.
+-Bug Fix: Greyhound names can no longer be null, empty, in lower case, have a comma or a double quote
+-Bug Fix: Breeding shows all pups for a null dog
+-Improvement: Added progress Bar to the import / export screen
+-Improvement: added delete all button for greyhounds and races data view screens
+-Improvement: Database screen needs to be bigger
+-Bug Fix: where excel is not installed should default to csv
+-Bug Fix: Centered all the sub forms
+-Bug Fix: on main screen, the date checkboxes are not booleanising correctly. Between should be unchecked when a year or month selected. likewise when between unchecked it should load the default year not month.
+-Cleaned up the breeding/greyhound info screen loading
+-Change sunset so if a greyhound has no races he has no sunset. Its for pointful retired greyhounds. Also capped at 1200. Ten years of a sunset.
+-Bug Fix: export to excel crashing when no data
+-Updated about to 2011 and 5.6
+--Restarted in 2011
+
+
+Done for 5.5:
+-The fuction of rank between two dates
+-Export To Excel fixed - agian
+-Clean up main menu options to be cleaner
+-Fix Import Export Menu
+-New export to csv
+
+v5.45 Changes:
+-Made Greyhound, Race and Placing all implement the IComparable Interface which means they now can 
+have searching and sorting in List<T> without any extra code. Greyhounds are sorted by alpha name,
+race alpha name then date, and placing is sorted by greyhound name and then race and last place in the race.
+-Placings can now be removed. Also more validation when adding a placing has been added so duplicates dont happen.
+-Add a new feacutre that lists what
+
+v5.4 Changes:
+-Add the static of group 1 count, group 2 count and group 3 count
+-Fleshed out the Text Input system.  The rapid input system for complete races is now
+heravely padded and protected to stop crashing from bad input. It also as cool clearing
+fucntions and reporting on the input. This added to help aid with the 10 year ranking.
+-Changed the Races display on the greyhound info screen to the placings...somewhat more usful
+
+Bug Fixes
+	-Fixed a Multipes of the same greyhound error by trimming the white space from new greyhounds
+	 this is done at the core so nothing is affected.
+	-Pinned the Greyhound Info Screen somewhat so that sizing isnt so bad..but its still bad
+
+v5.3 Changes:
+-Added More Defined Ranking and displaying
+-Added the ability to quick Search
+-Added More Database staticitcs
+-Updated the Greyhound Info display to now work and display all info correctly
+-Removed the Breeding Menu the fucntionaility can now be preformed in the Greyhound Info Screen
+-Scraped the Race Info screen for the moment and change how races are displayed in the viewer
+-Change how some screen are displayed and added icon support for the .exe and the window icon
+
+v5.2 Changes:
+This is the first working Beta of the Ranker version 5. It has the following features:
+	-Takes Greyhounds
+	-Create new Races
+	-Ranks the greyhounds based on race preformance
+	-Lists all Greyhounds partially
+	-Lists all Races partially
+	-Lists all Placings partially
+	-Add Greyhounds Breeding Information
+	-Rank off Breeding Information	
+	-Greyhound Infomation Screen
+	-Race Information Screen
