@@ -4,16 +4,19 @@ import org.json4s._
 import org.json4s.native.JsonMethods._
 import org.json4s.native.Serialization
 import org.json4s.native.Serialization.{read, write}
-import play.api.mvc.{PlainResult, Controller}
+import play.api.mvc.{PlainResult}
 import org.bson.types.ObjectId
 import org.joda.time.Interval
 import reflect.Manifest
 import play.api.libs.json.JsValue
+import play.api.mvc.Results
+import play.api.http.ContentTypes
+
 
 /**
  * Trait meaning that the applied object can be converted to json.
  */
-trait Jsonable extends Controller {
+trait Jsonable {
 
 	val removedFields : List[String] = Nil
 
@@ -33,7 +36,7 @@ trait Jsonable extends Controller {
 	 * @return
 	 */
 	def asOkJson(onlyFields : List[String]) : PlainResult = {
-		Ok(this.asJson(onlyFields,removedFields)).as(JSON)
+    Results.Ok(this.asJson(onlyFields,removedFields)).as(ContentTypes.JSON)
 	}
 
 	/**
@@ -41,7 +44,7 @@ trait Jsonable extends Controller {
 	 * @return
 	 */
 	def asOkJson : PlainResult = {
-		Ok(this.asJson).as(JSON)
+    Results.Ok(this.asJson).as(ContentTypes.JSON)
 	}
 
 	/**
@@ -153,7 +156,7 @@ object Jsonable {
 		try{
 			Left(jsonObject.extract[T])
 		}catch {
-			case ex : Exception => Right(Response.inputNotValidJson)
+			case ex : Exception => Right(Response.requestBadJson)
 		}
 	}
 
@@ -172,14 +175,14 @@ object Jsonable {
 				try{
 					parse(originalEntity).merge(parse(jsonEntity))
 				}catch {
-					case e : Exception => return Right(Response.inputNotJson)
+					case e : Exception => return Right(Response.requestBadJson)
 				}
 			}
 			case None => {
 				try{
 					parse(jsonEntity)
 				}catch {
-					case e : Exception => return Right(Response.inputNotJson)
+					case e : Exception => return Right(Response.requestBadJson)
 				}
 			}
 		}
@@ -191,7 +194,7 @@ object Jsonable {
 			case Some(someJson) => {
 				Jsonable.fromJson[T](someJson.toString())
 			}
-			case None => Right(Response.inputNotJson)
+			case None => Right(Response.requestBadJson)
 		}
 	}
 }

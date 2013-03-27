@@ -1,8 +1,8 @@
 package models
 
-import play.api.mvc.{PlainResult, Controller}
-import models.FieldError
-import models.Jsonable
+import play.api.mvc.{PlainResult}
+import play.api.mvc.Results
+import play.api.http.ContentTypes
 
 
 
@@ -10,10 +10,10 @@ case class Response(message : String, status: ResponseStatus, errors : Traversab
 
   def asPlayResult : PlainResult = {
     this.status match {
-      case ResponseStatus.Ok200 => Ok(this.asJson).as(JSON)
-      case ResponseStatus.BadRequest400 => BadRequest(this.asJson).as(JSON)
-      case ResponseStatus.actionNotFound404 => NotFound(this.asJson).as(JSON)
-      case ResponseStatus.InternalServerError500 => InternalServerError(this.asJson).as(JSON)
+      case ResponseStatus.Ok200 => Results.Ok(this.asJson).as(ContentTypes.JSON)
+      case ResponseStatus.BadRequest400 => Results.BadRequest(this.asJson).as(ContentTypes.JSON)
+      case ResponseStatus.actionNotFound404 => Results.NotFound(this.asJson).as(ContentTypes.JSON)
+      case ResponseStatus.InternalServerError500 => Results.InternalServerError(this.asJson).as(ContentTypes.JSON)
     }
   }
 
@@ -26,6 +26,7 @@ case class Response(message : String, status: ResponseStatus, errors : Traversab
 object Response {
   val success = Response("success", ResponseStatus.Ok200)
   val invalidRequest = Response("invalid.request", ResponseStatus.BadRequest400)
+  val requestBadJson = Response("invalid.json.request", ResponseStatus.BadRequest400)
   val invalidAction = Response("unknown.action",ResponseStatus.BadRequest400)
   val unknownException = Response("server.exception",ResponseStatus.InternalServerError500)
 }

@@ -8,7 +8,11 @@ object ApplicationBuild extends Build {
     val appVersion      = "1.0"
 
     val appDependencies = Seq(
-      // Add your project dependencies here,
+      "org.json4s" %% "json4s-native" % "3.1.0",
+      "org.scalaj" %% "scalaj-time" % "0.6",
+      "com.novus" %% "salat-core" % "1.9.1",
+      "se.radley" %% "play-plugins-salat" % "1.1",
+      "com.typesafe.akka" % "akka-actor" % "2.0.3"
     )
 
     val main = PlayProject(appName, appVersion, appDependencies, mainLang = SCALA).settings(
