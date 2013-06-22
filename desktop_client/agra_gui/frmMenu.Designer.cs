@@ -32,6 +32,7 @@ namespace agra_gui
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMenu));
             this.btnGoCGrey = new System.Windows.Forms.Button();
             this.gbMenu = new System.Windows.Forms.GroupBox();
+            this.btnShowLogs = new System.Windows.Forms.Button();
             this.btnStats = new System.Windows.Forms.Button();
             this.buttonDatabase = new System.Windows.Forms.Button();
             this.radRaceSearch = new System.Windows.Forms.RadioButton();
@@ -66,7 +67,8 @@ namespace agra_gui
             this.label2 = new System.Windows.Forms.Label();
             this.dtpEndDate = new System.Windows.Forms.DateTimePicker();
             this.cbFilterMonth = new System.Windows.Forms.CheckBox();
-            this.btnShowLogs = new System.Windows.Forms.Button();
+            this.cbFilterFYear = new System.Windows.Forms.CheckBox();
+            this.cbFYear = new System.Windows.Forms.ComboBox();
             this.gbMenu.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRankings)).BeginInit();
@@ -108,6 +110,16 @@ namespace agra_gui
             this.gbMenu.TabIndex = 1;
             this.gbMenu.TabStop = false;
             this.gbMenu.Text = "Menus and Options";
+            // 
+            // btnShowLogs
+            // 
+            this.btnShowLogs.Location = new System.Drawing.Point(376, 15);
+            this.btnShowLogs.Name = "btnShowLogs";
+            this.btnShowLogs.Size = new System.Drawing.Size(75, 23);
+            this.btnShowLogs.TabIndex = 11;
+            this.btnShowLogs.Text = "Logs";
+            this.btnShowLogs.UseVisualStyleBackColor = true;
+            this.btnShowLogs.Click += new System.EventHandler(this.btnShowLogs_Click);
             // 
             // btnStats
             // 
@@ -376,6 +388,8 @@ namespace agra_gui
             // 
             this.gbDataDisplay.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.gbDataDisplay.Controls.Add(this.cbFYear);
+            this.gbDataDisplay.Controls.Add(this.cbFilterFYear);
             this.gbDataDisplay.Controls.Add(this.dtpYear);
             this.gbDataDisplay.Controls.Add(this.cbFilterYear);
             this.gbDataDisplay.Controls.Add(this.rbSB);
@@ -391,7 +405,7 @@ namespace agra_gui
             this.gbDataDisplay.Controls.Add(this.cbFilterMonth);
             this.gbDataDisplay.Location = new System.Drawing.Point(572, 217);
             this.gbDataDisplay.Name = "gbDataDisplay";
-            this.gbDataDisplay.Size = new System.Drawing.Size(200, 233);
+            this.gbDataDisplay.Size = new System.Drawing.Size(200, 250);
             this.gbDataDisplay.TabIndex = 10;
             this.gbDataDisplay.TabStop = false;
             this.gbDataDisplay.Text = "Display Filters";
@@ -403,7 +417,7 @@ namespace agra_gui
             this.dtpYear.Location = new System.Drawing.Point(114, 151);
             this.dtpYear.Margin = new System.Windows.Forms.Padding(0);
             this.dtpYear.Name = "dtpYear";
-            this.dtpYear.Size = new System.Drawing.Size(48, 20);
+            this.dtpYear.Size = new System.Drawing.Size(73, 20);
             this.dtpYear.TabIndex = 22;
             this.dtpYear.Value = new System.DateTime(2009, 11, 4, 0, 0, 0, 0);
             // 
@@ -435,7 +449,7 @@ namespace agra_gui
             // cbBetween
             // 
             this.cbBetween.AutoSize = true;
-            this.cbBetween.Location = new System.Drawing.Point(6, 174);
+            this.cbBetween.Location = new System.Drawing.Point(6, 202);
             this.cbBetween.Name = "cbBetween";
             this.cbBetween.Size = new System.Drawing.Size(100, 17);
             this.cbBetween.TabIndex = 21;
@@ -448,7 +462,7 @@ namespace agra_gui
             this.dtpStartDate.CustomFormat = "dd/MM/yy";
             this.dtpStartDate.Enabled = false;
             this.dtpStartDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpStartDate.Location = new System.Drawing.Point(10, 198);
+            this.dtpStartDate.Location = new System.Drawing.Point(10, 223);
             this.dtpStartDate.Margin = new System.Windows.Forms.Padding(0);
             this.dtpStartDate.Name = "dtpStartDate";
             this.dtpStartDate.Size = new System.Drawing.Size(71, 20);
@@ -458,7 +472,7 @@ namespace agra_gui
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(89, 202);
+            this.label2.Location = new System.Drawing.Point(89, 227);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(25, 13);
             this.label2.TabIndex = 19;
@@ -469,7 +483,7 @@ namespace agra_gui
             this.dtpEndDate.CustomFormat = "dd/MM/yy";
             this.dtpEndDate.Enabled = false;
             this.dtpEndDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpEndDate.Location = new System.Drawing.Point(123, 198);
+            this.dtpEndDate.Location = new System.Drawing.Point(123, 223);
             this.dtpEndDate.Margin = new System.Windows.Forms.Padding(0);
             this.dtpEndDate.Name = "dtpEndDate";
             this.dtpEndDate.Size = new System.Drawing.Size(71, 20);
@@ -487,15 +501,24 @@ namespace agra_gui
             this.cbFilterMonth.UseVisualStyleBackColor = true;
             this.cbFilterMonth.CheckedChanged += new System.EventHandler(this.cbDate_CheckedChanged);
             // 
-            // btnShowLogs
+            // cbFilterFYear
             // 
-            this.btnShowLogs.Location = new System.Drawing.Point(376, 15);
-            this.btnShowLogs.Name = "btnShowLogs";
-            this.btnShowLogs.Size = new System.Drawing.Size(75, 23);
-            this.btnShowLogs.TabIndex = 11;
-            this.btnShowLogs.Text = "Logs";
-            this.btnShowLogs.UseVisualStyleBackColor = true;
-            this.btnShowLogs.Click += new System.EventHandler(this.btnShowLogs_Click);
+            this.cbFilterFYear.AutoSize = true;
+            this.cbFilterFYear.Location = new System.Drawing.Point(6, 174);
+            this.cbFilterFYear.Name = "cbFilterFYear";
+            this.cbFilterFYear.Size = new System.Drawing.Size(96, 17);
+            this.cbFilterFYear.TabIndex = 25;
+            this.cbFilterFYear.Text = "Financial  Year";
+            this.cbFilterFYear.UseVisualStyleBackColor = true;
+            this.cbFilterFYear.CheckedChanged += new System.EventHandler(this.cbFilterFYear_CheckedChanged);
+            // 
+            // cbFYear
+            // 
+            this.cbFYear.FormattingEnabled = true;
+            this.cbFYear.Location = new System.Drawing.Point(114, 174);
+            this.cbFYear.Name = "cbFYear";
+            this.cbFYear.Size = new System.Drawing.Size(73, 21);
+            this.cbFYear.TabIndex = 26;
             // 
             // frmMenu
             // 
@@ -568,6 +591,8 @@ namespace agra_gui
         private System.Windows.Forms.Button buttonDatabase;
         private System.Windows.Forms.Button btnStats;
         private System.Windows.Forms.Button btnShowLogs;
+        private System.Windows.Forms.CheckBox cbFilterFYear;
+        private System.Windows.Forms.ComboBox cbFYear;
     }
 }
 

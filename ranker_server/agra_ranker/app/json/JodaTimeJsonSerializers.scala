@@ -1,4 +1,4 @@
-package models
+package json
 
 import org.joda.time._
 import org.json4s._

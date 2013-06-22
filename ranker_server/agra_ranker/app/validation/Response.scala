@@ -1,12 +1,12 @@
-package models
+package validation
 
-import play.api.mvc.{PlainResult}
+import play.api.mvc.PlainResult
 import play.api.mvc.Results
 import play.api.http.ContentTypes
+import json.Jsonable
 
 
-
-case class Response(message : String, status: ResponseStatus, errors : Traversable[FieldError] = Nil) extends Jsonable{
+case class Response(message : String, status: ResponseStatus, errors : Option[Seq[FieldError]] = Nil) extends Jsonable{
 
   def asPlayResult : PlainResult = {
     this.status match {
@@ -25,10 +25,18 @@ case class Response(message : String, status: ResponseStatus, errors : Traversab
 
 object Response {
   val success = Response("success", ResponseStatus.Ok200)
+  val failedValidation = Response("invalid.validation", ResponseStatus.BadRequest400)
   val invalidRequest = Response("invalid.request", ResponseStatus.BadRequest400)
   val requestBadJson = Response("invalid.json.request", ResponseStatus.BadRequest400)
   val invalidAction = Response("unknown.action",ResponseStatus.BadRequest400)
   val unknownException = Response("server.exception",ResponseStatus.InternalServerError500)
+  def invalidValidation(someFieldErrors : Seq[FieldError]) : Response = {
+    Response("invalid.validation",ResponseStatus.BadRequest400,Some(someFieldErrors))
+  }
+
+  def failedValidation(someFieldErrors : FieldError) : Response = {
+    Response("validation.failed",ResponseStatus.BadRequest400,Some(someFieldErrors :: Nil))
+  }
 }
 
 case class ResponseStatus(code : String){}

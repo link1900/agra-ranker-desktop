@@ -1,7 +1,7 @@
 import play.api.mvc.{Result, RequestHeader}
 import play.api._
 import Play.current
-import models.Response
+import validation.Response
 
 object Global extends GlobalSettings {
   override def onStart(app: Application) {

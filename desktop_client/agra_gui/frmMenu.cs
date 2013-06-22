@@ -46,8 +46,32 @@ namespace agra_gui
             dtpMonthFilter.Enabled = false;
             dtpYear.Value = DateTime.Now;
             dtpMonthFilter.Value = DateTime.Now;
-            dtpStartDate.Value = DateTime.Now.AddMonths(-1);
-            dtpEndDate.Value = DateTime.Now;
+            dtpStartDate.Value = DateTime.Now.AddMonths(-6);
+            dtpEndDate.Value = DateTime.Now.AddMonths(6);
+            List<String> years = yearPairs(DateTime.Now, new DateTime(1990, 1, 1));
+            foreach(String s in years){
+             cbFYear.Items.Add(s);
+            }
+            cbFYear.SelectedIndex = 0;
+            cbFYear.Enabled = false;
+        }
+
+        private List<String> yearPairs(DateTime startYear, DateTime endYear)
+        {
+            DateTime curYear = startYear;
+            List<String> pairs = new List<String>();
+            while (curYear > endYear){
+                pairs.Add(getYearPair(curYear));
+                curYear = curYear.AddYears(-1);
+            }
+            return pairs;
+        }
+
+        private String getYearPair(DateTime d)
+        {
+            string right = d.ToString("yy");
+            string left = d.AddYears(-1).ToString("yy");
+            return left + "/" + right;
         }
 
 
@@ -377,6 +401,14 @@ namespace agra_gui
                 sd = new DateTime(dtpYear.Value.Year, 1, 1);
                 ed = new DateTime(dtpYear.Value.Year, 12, 31);
             }
+            if (cbFilterFYear.Checked)
+            {
+                string[] selected = cbFYear.SelectedItem.ToString().Split("/".ToCharArray());
+                int start = Int16.Parse(selected[0]) + 2000;
+                int end = Int16.Parse(selected[1]) + 2000;
+                sd = new DateTime(start, 07, 1);
+                ed = new DateTime(end, 06, 30);
+            }
             if (cbBetween.Checked)
             {
                 sd = dtpStartDate.Value;
@@ -481,6 +513,8 @@ namespace agra_gui
                 dtpStartDate.Enabled = false;
                 dtpEndDate.Enabled = false;
                 cbBetween.Checked = false;
+                cbFilterFYear.Checked = false;
+                    cbFYear.Enabled = false;
             }
         }
 
@@ -494,6 +528,8 @@ namespace agra_gui
                 dtpMonthFilter.Enabled = false;
                 dtpStartDate.Enabled = true;
                 dtpEndDate.Enabled = true;
+                cbFYear.Enabled = false;
+                cbFilterFYear.Checked = false;
             }
         }
 
@@ -506,6 +542,8 @@ namespace agra_gui
                 dtpStartDate.Enabled = false;
                 dtpEndDate.Enabled = false;
                 cbBetween.Checked = false;
+                cbFYear.Enabled = false;
+                cbFilterFYear.Checked = false;
             }
 
       
@@ -663,6 +701,21 @@ namespace agra_gui
         private void btnShowLogs_Click(object sender, EventArgs e)
         {
             AgraDBController.navTo(this, "logs");
+        }
+
+        private void cbFilterFYear_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbFilterFYear.Checked)
+            {
+                cbFilterMonth.Checked = false;
+                cbFilterYear.Checked = false;
+                dtpYear.Enabled = false;
+                dtpMonthFilter.Enabled = false;
+                dtpStartDate.Enabled = false;
+                dtpEndDate.Enabled = false;
+                cbFYear.Enabled = true;
+                cbBetween.Checked = false;
+            }
         }
 
 
