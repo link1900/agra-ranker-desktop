@@ -66,3 +66,7 @@ _ReSharper*/
 
 # Office Temp Files
 ~$*
+
+.idea
+.idea_modules
+/.idea/
